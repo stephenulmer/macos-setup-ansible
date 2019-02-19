@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  roles:
+    - workstation-photography
+    - workstation-vagrant
+    - defaults-software
+    - macOS-defaults

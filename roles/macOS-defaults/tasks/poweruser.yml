@@ -1,0 +1,49 @@
+---
+- name: Move dock to the left side of the screen
+  osx_defaults:
+    domain: com.apple.dock
+    key: orientation
+    type: string
+    value: left
+
+- name: Allow Cut And Paste from Quicklook
+  osx_defaults:
+    domain: com.apple.finder
+    key: QLEnableTextSelection
+    type: bool
+    value: true
+
+- name: Turn on debug menu for Reminders (allows manual sync forcing)
+  osx_defaults:
+    domain: com.apple.reminders
+    key: RemindersDebugMenu
+    type: bool
+    value: true
+ 
+- name: Stop Photos.app from opening every time something is plugged in!
+  osx_defaults:
+    host: currentHost
+    domain: com.apple.ImageCapture
+    key: disableHotPlug
+    type: bool
+    value: true
+ 
+- name: Add shorcut for OmniFocus Clipping to Mail.app
+  command: "defaults write com.apple.mail NSUserKeyEquivalents -dict-add '\\033Mail\\033Services\\033OmniFocus 3: Send to Inbox' '@^,';"
+
+- name: Add shortcut to Insert Bulleted List to Mail.app
+  command: "defaults write com.apple.mail NSUserKeyEquivalents -dict-add 'Insert Bulleted List' '@~\\U005B';"
+
+- name: Ensure ~/.config/mpv/ exists
+  file:
+    path: ~/.config/mpv
+    state: directory
+    mode: 0700
+
+- name: Setup mpv configuration
+  copy:
+    src: mpv.conf
+    dest: ~/.config/mpv/mpv.conf
+    mode: 0600
+
+

@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Stephen Ulmer
+  description: Vagrant Workstation for macOS
+  company: Alleve Consulting, Inc.
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+        - any
+
+  galaxy_tags:
+    - development
+    - system
+
+dependencies:
+  - { role: homebrew,
+      homebrew_cask_apps: "{{ vagrant_brew_casks }}",
+      homebrew_installed_packages: "{{ vagrant_brew_packages }}" }
+

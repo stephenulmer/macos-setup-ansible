@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Stephen Ulmer
+  description: Install Common macOS Software
+  company: Alleve Consulting, Inc.
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+        - any
+
+dependencies:
+  - { role: homebrew,
+      homebrew_cask_apps: "{{ default_brew_casks }}",
+      hmebrew_installed_packages: "{{ default_brew_packages }}" }
+    

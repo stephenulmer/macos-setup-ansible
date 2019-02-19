@@ -1,0 +1,30 @@
+---
+- name: Allow Cut And Paste from Quicklook
+  osx_defaults:
+    domain: com.apple.finder
+    key: QLEnableTextSelection
+    type: bool
+    value: true
+
+- name: Turn on debug menu for Reminders (allows manual sync forcing)
+  osx_defaults:
+    domain: com.apple.reminders
+    key: RemindersDebugMenu
+    type: bool
+    value: true
+
+- name: Stop Photos.app from opening every time somethign is plugged in!
+  osx_defaults:
+    host: currentHost
+    domain: com.apple.ImageCapture
+    key: disableHotPlug
+    type: bool
+    value: true
+
+- name: Allow Command-P Double Tap to Save PDF
+  command: defaults write -globalDomain NSUserKeyEquivalents  -dict-add 'Save as PDF' '@p';
+
+- name: Add ownership information to Login Window
+  command: defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Stephen Ulmer 352-870-8649'
+  become: true
+ 

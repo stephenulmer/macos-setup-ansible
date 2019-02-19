@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Stephen Ulmer
+  description: Homebrew for macOS
+  company: Alleve Consulting, Inc.
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+        - any
+
+  galaxy_tags:
+    - development
+    - system
+    - packaging
+
+dependencies: []
+

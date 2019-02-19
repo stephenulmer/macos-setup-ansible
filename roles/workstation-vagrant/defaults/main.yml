@@ -1,0 +1,18 @@
+---
+vagrant_brew_packages:
+  - packer
+
+vagrant_brew_casks:
+  - vagrant
+  - vagrant-vmware-utility
+  - vmware-fusion
+
+vagrant_plugins:
+  - vagrant-vmware-desktop
+  - vagrant-hosts
+  - vagrant-cachier
+  - vagrant-vmware-esxi
+  - vagrant-vsphere
+  - vagrant-vbguest
+  - vagrant-hostmanager
+

@@ -1,0 +1,20 @@
+---
+- name: Ensure that ~/.bashrc exists
+  file:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: touch
+    access_time: preserve
+    modification_time: preserve 
+
+- name: Set VAGRANT_DOTFILE_PATH in .bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: 'VAGRANT_DOTFILE_PATH='
+    line: 'export VAGRANT_DOTFILE_PATH="${HOME}/Virtual Machines.localized/Vagrant"'
+
+- name: Set VAGRANT_DEFAULT_PROVIDER in .bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: 'VAGRANT_DEFAULT_PROVIDER='
+    line: 'export VAGRANT_DEFAULT_PROVIDER="vmware_desktop"'
+

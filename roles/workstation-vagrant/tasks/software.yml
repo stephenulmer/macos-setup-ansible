@@ -1,0 +1,21 @@
+---
+- name: Get list of installed Vagrant plugins
+  command: "/usr/local/bin/vagrant plugin list"
+  register: installed_plugins
+  changed_when: false
+  #check_mode: yes
+
+- name: Install Vagrant Plugins
+  command: /usr/local/bin/vagrant plugin install {{ item }}
+  when: not installed_plugins.stdout | regex_search('^' ~ item ~ ' ', multiline=True)
+  with_items: "{{ vagrant_plugins }}"
+
+- name: Configure sudo for vagrant-hostmanager plugin
+  become: true
+  copy:
+    src: sudoers_d_vagrant_hostmanager
+    dest: /etc/sudoers.d/vagrant_hostmanager
+    owner: root
+    group: wheel
+    mode: 0644
+

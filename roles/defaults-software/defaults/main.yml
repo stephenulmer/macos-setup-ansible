@@ -1,0 +1,42 @@
+---
+default_brew_casks:
+## Purchased Software
+  - 1password
+  - alfred
+  - bartender
+  - bettertouchtool
+  - cleanmymac
+  - carbon-copy-cloner
+  - hazel
+  - omnifocus
+  - omnigraffle
+  - omnioutliner
+  - omniplan
+  - textexpander
+
+  -  softorino-youtube-converter
+  -  waltr
+
+## Free/OSS Software
+  - aquamacs
+  - caffeine
+  - clamxav
+  - grandperspective
+  - java
+  - mpv
+  - xquartz
+
+## Web Browsers
+  - firefox
+  - google-chrome
+  - tor-browser
+
+
+default_brew_packages:
+  - gawk
+  - rename
+  - telnet
+  - watch
+  - wget
+
+
