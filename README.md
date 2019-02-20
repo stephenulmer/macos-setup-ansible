@@ -18,5 +18,5 @@ Tasks that require the Mac App Store have an Ansible tag of "mas", and are skipp
 
 When I acquired my 2018 MacBook Adorable(tm), my 2013 13" MacBook Pro became a desktop workstation. To guard my sanity, I decided that all of my work product, documents, and projects would live in various cloud services.
 
-This took care of my "user data" so to speak, but not the actual configuration of the workstations themselves. If I loose one (let's say to customs or the TSA), then I'm still hours or days from a comfortable work environment -- even after replacing the hardware and syncing my data.
+This took care of my "user data" so to speak, but not the actual configuration of the workstations themselves. If I lost a computer (let's say to customs, the TSA, or a hotel thief), then I would have still been hours or days from a comfortable work environment -- even after replacing the hardware and syncing my data. As this project matures, it should converge towards complete coverage of my configuration.
 
