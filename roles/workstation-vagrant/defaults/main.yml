@@ -8,11 +8,13 @@ vagrant_brew_casks:
   - vmware-fusion
 
 vagrant_plugins:
-  - vagrant-vmware-desktop
   - vagrant-hosts
   - vagrant-cachier
   - vagrant-vmware-esxi
   - vagrant-vsphere
   - vagrant-vbguest
   - vagrant-hostmanager
+
+vagrant_plugins_licensed:
+  - { name: "vagrant-vmware-desktop", licfile: "vagrant-license-Fusion11.lic" }
 

@@ -18,3 +18,38 @@
     regexp: 'VAGRANT_DEFAULT_PROVIDER='
     line: 'export VAGRANT_DEFAULT_PROVIDER="vmware_desktop"'
 
+- name: Install Vagrant plugins requiring a license
+  block:
+    - name: Create temporary directory to decrypt license file(s)
+      tempfile:
+        state: directory
+        suffix: licenses
+      register: tmpdir
+
+    - name: Copy license file(s) from vault to decrypt
+      copy:
+        src: "{{ item.licfile }}"
+        dest: "{{ tmpdir.path + '/' + item.licfile }}"
+      when: not installed_plugins.stdout | regex_search('^' ~ item.name ~ ' ', multiline=True)
+      loop: "{{ vagrant_plugins_licensed }}"
+
+    - name: Install Vagrant Plugins
+      command: /usr/local/bin/vagrant plugin install {{ item.name }}
+      when: not installed_plugins.stdout | regex_search('^' ~ item.name ~ ' ', multiline=True)
+      loop: "{{ vagrant_plugins_licensed }}"
+
+      ## Don't panic: installed_plugins was calculated *before* any plugins were installed by
+      ## this run of this role.
+    - name: Apply plugin license
+      command: /usr/local/bin/vagrant plugin license {{ item.name }} {{ tmpdir.path + '/' + item.licfile }}
+      when: not installed_plugins.stdout | regex_search('^' ~ item.name ~ ' ', multiline=True)
+      loop: "{{ vagrant_plugins_licensed }}"
+
+  always:
+    - name: Remove decrypted license files
+      file:
+        path: "{{ tmpdir.path }}"
+        state: absent
+  tags:
+    - vault
+

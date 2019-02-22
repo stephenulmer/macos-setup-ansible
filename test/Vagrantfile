@@ -1,6 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+skip_tags = [ "mas" ]
+vault_password_file = "../.vault-password"
+
+unless File.exists?(vault_password_file)
+  skip_tags.push("vault")
+end
+
+
 Vagrant.configure("2") do |config|
 #  config.vm.box = "ulmer/macos"
   config.vm.box = "msl/macos_mojave_10.14"
@@ -13,7 +21,8 @@ Vagrant.configure("2") do |config|
       ansible.compatibility_mode = "2.0"
       ansible.galaxy_role_file = "../requirements.yml"
       ansible.galaxy_roles_path = "roles-galaxy"
-      ansible.skip_tags = [ "mas", "vault" ]
+      ansible.skip_tags = skip_tags
+      ansible.vault_password_file = vault_password_file if File.exists?(vault_password_file)
     end
 
   end
