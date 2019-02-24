@@ -25,6 +25,7 @@
         state: directory
         suffix: licenses
       register: tmpdir
+      changed_when: false
 
     - name: Copy license file(s) from vault to decrypt
       copy:
@@ -50,6 +51,7 @@
       file:
         path: "{{ tmpdir.path }}"
         state: absent
+      changed_when: false
   tags:
     - vault
 
