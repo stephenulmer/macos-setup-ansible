@@ -19,3 +19,17 @@
     group: wheel
     mode: 0644
 
+- name: Create the VMware License File
+  become: true
+  copy:
+    content: "{{ fusion_key }}"
+    dest: '/Applications/VMware Fusion.app/Contents/Library/License Key.txt'
+  register: fusion_lic_file
+  tags: vault
+
+- name: Run the VMware Fusion License Tool
+  become: true
+  command: /Applications/VMware\ Fusion.app/Contents/Library/Initialize\ VMware\ Fusion.tool set
+  when: fusion_lic_file.changed
+  tags: vault
+
