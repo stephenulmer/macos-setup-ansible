@@ -3,12 +3,17 @@
 ## Start installation of macOS Workstation with Ansible
 ##
 
+repo="macos-setup-ansible"
+
 sudo -v
 sudo launchctl limit maxfiles unlimited
 sudo easy_install pip
 sudo pip install ansible
 
-ansible-pull -U https://github.com/stephenulmer/macos-setup-ansible.git \
-	--skip-tag="mas" \
-	-i localhost,
+mkdir -p "${repo}"
+cd "${repo}"
+curl -L "https://github.com/stephenulmer/${repo}/tarball/master" \
+	| tar -xf - --strip-components 1
 
+ansible-galaxy install -r requirements.yml
+ansible-playbook --skip-tag="mas" -i localhost, --connection=local setup.yml
