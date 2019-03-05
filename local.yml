@@ -1,6 +1,0 @@
----
-- hosts: all
-  pre_tasks:
-    - command: ansible-galaxy install -r requirements.yml
-
-- import_playbook: "setup.yml"
