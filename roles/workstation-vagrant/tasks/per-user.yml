@@ -20,6 +20,12 @@
 
 - name: Install Vagrant plugins requiring a license
   block:
+    - name: Get list of installed Vagrant plugins
+      command: "/usr/local/bin/vagrant plugin list"
+      when: installed_plugins is undefined
+      register: installed_plugins
+      changed_when: false
+
     - name: Create temporary directory to decrypt license file(s)
       tempfile:
         state: directory
