@@ -15,4 +15,6 @@ galaxy_info:
 dependencies:
   - { role: homebrew,
       homebrew_cask_apps: "{{ photography_brew_casks }}" }
-    
+  - { role: geerlingguy.mas,
+      tags: ['mas'],
+      mas_installed_apps: "{{ photography_mas_apps }}" }    
