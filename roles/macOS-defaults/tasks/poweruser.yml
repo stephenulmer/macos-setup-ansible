@@ -6,6 +6,20 @@
     type: string
     value: left
 
+- name: Automatically Hide and Show the Dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: true
+
+- name: Remove Dock Autohide Delay
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide-delay
+    type: float
+    value: 0
+
 - name: Allow Cut And Paste from Quicklook
   osx_defaults:
     domain: com.apple.finder

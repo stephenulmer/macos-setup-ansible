@@ -6,6 +6,13 @@
     type: bool
     value: true
 
+- name: Allow Three Finger Drag for Trackpad
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadThreeFingerDrag
+    type: bool
+    value: true
+
 - name: Turn on debug menu for Reminders (allows manual sync forcing)
   osx_defaults:
     domain: com.apple.reminders
