@@ -8,3 +8,19 @@
     - workstation-vagrant
     - defaults-software
     - macOS-defaults
+
+- hosts: all
+  name: Pivot Ansible Installation to Homebrew
+  tasks:
+
+    - name: Install Ansible with Homebrew
+      homebrew:
+        name: ansible
+        state: latest
+      register: ansibrew
+
+    - name: Remove Ansible Bootstrap Installation
+      file:
+        path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
+        state: absent
+      when: not ansibrew.failed
