@@ -34,6 +34,13 @@
     type: bool
     value: true
  
+- name: Turn on Develop Menu for Safari (allows viewing page source)
+  osx_defaults:
+    domain: com.apple.Safari
+    key: IncludeDevelopMenu
+    type: bool
+    value: true
+
 - name: Stop Photos.app from opening every time something is plugged in!
   osx_defaults:
     host: currentHost
