@@ -1,2 +1,19 @@
 ---
-## FIXME: Add metadata
+galaxy_info:
+  author: Stephen Ulmer
+  description: Configure macOS Defaults
+  company: Alleve Consulting, Inc.
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+        - any
+
+dependencies:
+  - { role: fubarhouse.macdock,
+      tags: ['mpu'],
+      dockitems_remove_all: true,
+      dockitems_enabled: "{{ mpu_dockitems_enabled }}" }

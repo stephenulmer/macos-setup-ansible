@@ -1,3 +1,4 @@
 ---
 - import_tasks: general.yml
 - import_tasks: poweruser.yml
+  tags: [ mpu ]

@@ -1,0 +1,6 @@
+---
+mpu_dockitems_enabled:
+  - name: iTunes
+    path: "/Applications/iTunes.app"
+    pos: 1
+
