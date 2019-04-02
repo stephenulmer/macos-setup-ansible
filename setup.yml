@@ -13,14 +13,20 @@
   name: Pivot Ansible Installation to Homebrew
   tasks:
 
+    - name: Check for bootstrap installation of Ansible
+      stat:
+        path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
+      register: ansible_bootstrap
+
     - name: Install Ansible with Homebrew
       homebrew:
         name: ansible
         state: latest
-      register: ansibrew
+      register: ansible_brew_install
+      when: ansible_bootstrap.stat.exists and ansible_bootstrap.stat.isdir
 
     - name: Remove Ansible Bootstrap Installation
       file:
         path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
         state: absent
-      when: not ansibrew.failed
+      when: not ansible_brew_install is failed
