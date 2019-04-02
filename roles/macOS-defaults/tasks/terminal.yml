@@ -1,0 +1,24 @@
+---
+- name: Get value of existing terminal profile
+  command: "plutil -extract 'Window Settings.Ulmer' xml1 -o - {{ mpu_terminal_plist }}"
+  register: mpu_terminal_profile_current
+  ignore_errors: True
+  changed_when: False
+
+- name: Replace Terminal Profile
+  command: "plutil -replace 'Window Settings.Ulmer' -xml '{{ mpu_terminal_profile_new }}' {{ mpu_terminal_plist }}"
+  when: ( mpu_terminal_profile_current is not defined ) or ( not mpu_terminal_profile_new == mpu_terminal_profile_current.stdout )
+ 
+- name: Set Default Terminal Profile
+  osx_defaults:
+    domain: com.apple.Terminal
+    key: "Default Window Settings"
+    type: string
+    value: "Ulmer"
+
+- name: Set Startup Terminal Profile
+  osx_defaults:
+    domain: com.apple.Terminal
+    key: "Startup Window Settings"
+    type: string
+    value: "Ulmer"
