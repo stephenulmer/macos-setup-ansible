@@ -31,9 +31,18 @@ default_brew_casks:
   - google-chrome
   - tor-browser
 
+## Cloud Storage
+  - dropbox
+  - omnipresence
+  - box-drive
+
+## Network Tools
+  - wireshark
 
 default_brew_packages:
   - gawk
+  - ipmitool
+  - ipmiutil
   - rename
   - telnet
   - watch
