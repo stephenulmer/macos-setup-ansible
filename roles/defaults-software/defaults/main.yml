@@ -41,6 +41,7 @@ default_brew_casks:
 
 default_brew_packages:
   - gawk
+  - graphviz
   - ipmitool
   - ipmiutil
   - rename
@@ -48,4 +49,9 @@ default_brew_packages:
   - watch
   - wget
 
-
+default_mas_apps:
+  - { id: 1303222628, name: "Paprika Recipe Manager 3" }
+  - { id: 890031187,  name: "Marked 2" }
+  - { id: 427475982,  name: "BreakTime" }
+  - { id: 1173663647, name: "BusyCal" }
+  - { id: 1037126344, name: "Apple Configurator 2" }
