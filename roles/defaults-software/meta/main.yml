@@ -15,5 +15,5 @@ galaxy_info:
 dependencies:
   - { role: homebrew,
       homebrew_cask_apps: "{{ default_brew_casks }}",
-      hmebrew_installed_packages: "{{ default_brew_packages }}" }
+      homebrew_installed_packages: "{{ default_brew_packages }}" }
     
