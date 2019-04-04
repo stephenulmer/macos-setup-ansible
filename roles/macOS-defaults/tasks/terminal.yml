@@ -1,24 +1,40 @@
 ---
-- name: Get value of existing terminal profile
-  command: "plutil -extract 'Window Settings.Ulmer' xml1 -o - {{ mpu_terminal_plist }}"
-  register: mpu_terminal_profile_current
-  ignore_errors: True
-  changed_when: False
+- name: Update Terminal With Custom Profle
+  block:
+    - name: Check for existence of Terminal preferences file
+      stat:
+        path: "{{ mpu_terminal_plist }}"
+      register: mpu_terminal_file
+      changed_when: False
 
-- name: Replace Terminal Profile
-  command: "plutil -replace 'Window Settings.Ulmer' -xml '{{ mpu_terminal_profile_new }}' {{ mpu_terminal_plist }}"
-  when: ( mpu_terminal_profile_current is not defined ) or ( not mpu_terminal_profile_new == mpu_terminal_profile_current.stdout )
+    - name: Fail if Terminal preferences file doesn't exist
+      fail:
+      when: mpu_terminal_file.stat.exists == False
+
+    - name: Get value of existing terminal profile
+      command: "plutil -extract 'Window Settings.Ulmer' xml1 -o - {{ mpu_terminal_plist }}"
+      register: mpu_terminal_profile_current
+      ignore_errors: True
+      changed_when: False
+
+    - name: Replace Terminal Profile
+      command: "plutil -replace 'Window Settings.Ulmer' -xml '{{ mpu_terminal_profile_new }}' {{ mpu_terminal_plist }}"
+      when: ( mpu_terminal_profile_current is not defined ) or ( not mpu_terminal_profile_new == mpu_terminal_profile_current.stdout )
  
-- name: Set Default Terminal Profile
-  osx_defaults:
-    domain: com.apple.Terminal
-    key: "Default Window Settings"
-    type: string
-    value: "Ulmer"
+    - name: Set Default Terminal Profile
+      osx_defaults:
+        domain: com.apple.Terminal
+        key: "Default Window Settings"
+        type: string
+        value: "Ulmer"
 
-- name: Set Startup Terminal Profile
-  osx_defaults:
-    domain: com.apple.Terminal
-    key: "Startup Window Settings"
-    type: string
-    value: "Ulmer"
+    - name: Set Startup Terminal Profile
+      osx_defaults:
+        domain: com.apple.Terminal
+        key: "Startup Window Settings"
+        type: string
+        value: "Ulmer"
+
+  rescue:
+    - debug:
+        msg: "Terminal.app has never been launched, so there are no defaults to update."
