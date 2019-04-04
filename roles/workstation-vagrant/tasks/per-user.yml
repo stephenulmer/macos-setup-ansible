@@ -22,7 +22,6 @@
   block:
     - name: Get list of installed Vagrant plugins
       command: "/usr/local/bin/vagrant plugin list"
-      when: installed_plugins is undefined
       register: installed_plugins
       changed_when: false
 
