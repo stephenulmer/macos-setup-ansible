@@ -32,6 +32,15 @@
   command: defaults write -globalDomain NSUserKeyEquivalents  -dict-add 'Save as PDF' '@p';
 
 - name: Add ownership information to Login Window
-  command: defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Stephen Ulmer 352-870-8649'
-  become: true
+  block:
+    - name: Get Current Login Window Text
+      command: defaults read /Library/Preferences/com.apple.loginwindow LoginwindowText
+      register: login_window_text_current
+      ignore_errors: True
+      changed_when: False
+
+    - name: Change Login Window Text
+      command: defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "{{ login_window_text }}"
+      when: ( login_window_text_current is not defined ) or ( not login_window_text == login_window_text_current.stdout )
+      become: true
  
