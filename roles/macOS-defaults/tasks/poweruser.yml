@@ -55,6 +55,18 @@
 - name: Add shortcut to Insert Bulleted List to Mail.app
   command: "defaults write com.apple.mail NSUserKeyEquivalents -dict-add 'Insert Bulleted List' '@~\\U005B';"
 
+- name: Add global keyboard shortcuts
+  block:
+    - name: Extract NSUserKeyEquivalents from GlobalPreferences
+      command: defaults read -globalDomain NSUserKeyEquivalents
+      register: nsuserkeyequivalents_current
+      ignore_errors: True
+      changed_when: False
+
+    - name: Add "Command-P => Save as PDF" to global keyboard shortcuts
+      command: defaults write -globalDomain NSUserKeyEquivalents  -dict-add 'Save as PDF' '@p';
+      when: not nsuserkeyequivalents_current.stdout is search('"Save as PDF" = "@p;";')
+
 - name: Ensure ~/.config/mpv/ exists
   file:
     path: ~/.config/mpv

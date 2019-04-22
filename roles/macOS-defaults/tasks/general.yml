@@ -28,9 +28,6 @@
     type: bool
     value: true
 
-- name: Allow Command-P Double Tap to Save PDF
-  command: defaults write -globalDomain NSUserKeyEquivalents  -dict-add 'Save as PDF' '@p';
-
 - name: Add ownership information to Login Window
   block:
     - name: Get Current Login Window Text
