@@ -4,6 +4,15 @@
 ##
 
 repo="macos-setup-ansible"
+vault_password_file="${HOME}/.vault-password"
+skiptags="--skip-tags=mas"
+
+if [ -f "${vault_password_file}" ] ; then
+  vaultargs="--vault-password-file=$(vault_password_file)"
+else
+  skiptags+=",vault"
+fi
+
 export PYTHONUSERBASE="${HOME}/.ansible-bootstrap"
 export PATH=${PYTHONUSERBASE}/bin:$PATH
 
@@ -19,4 +28,4 @@ curl -L "https://github.com/stephenulmer/${repo}/tarball/master" \
 	| tar -xf - --strip-components 1
 
 ansible-galaxy install -r requirements.yml
-ansible-playbook --skip-tags="mas,vault" -i localhost, --connection=local setup.yml
+ansible-playbook ${skiptags} ${vaultargs} -i localhost, --connection=local setup.yml
