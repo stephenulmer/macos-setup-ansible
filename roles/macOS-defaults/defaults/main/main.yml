@@ -1,4 +1,21 @@
 ---
+mpu_dockitems_disabled:
+  - Launchpad
+  - Mail
+  - Safari
+  - Contacts
+  - Notes
+  - Reminders
+  - Maps
+  - Photos
+  - Messages
+  - FaceTime
+  - iBooks
+  - App Store
+  - System Preferences
+  - Calendar
+  - Terminal
+
 mpu_dockitems_enabled:
   - name: iTunes
     path: "/Applications/iTunes.app"

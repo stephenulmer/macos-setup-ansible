@@ -15,5 +15,5 @@ galaxy_info:
 dependencies:
   - { role: fubarhouse.macdock,
       tags: ['mpu'],
-      dockitems_remove_all: true,
+      dockitems_disabled: "{{ mpu_dockitems_disabled }}",
       dockitems_enabled: "{{ mpu_dockitems_enabled }}" }
