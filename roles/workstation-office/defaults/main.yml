@@ -1,7 +1,6 @@
 ---
 office_brew_casks:
   - microsoft-office
-  - mirosoft-teams
   - skype-for-business
   - onedrive
 
