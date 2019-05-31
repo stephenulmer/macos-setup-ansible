@@ -1,0 +1,21 @@
+---
+- vars:
+    mas_installed_apps:
+      - { id: 1037126344, name: "Apple Configurator 2" }
+
+    homebrew_cask_apps:
+    ## Network Tools
+      - wireshark
+
+    homebrew_installed_packages:
+      - ipmitool
+      - ipmiutil
+      - telnet
+      - wget
+
+
+- name: Install Network Software
+  hosts: all
+  roles:
+    - geerlingguy.homebrew
+    - geerlingguy.mas

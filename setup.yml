@@ -1,12 +1,9 @@
 ---
 - hosts: all
-
+  name: Install Package Managers
   roles:
-    - workstation-icloud
-    - workstation-office
-    - workstation-photography
-    - defaults-software
-    - macOS-defaults
+    - geerlingguy.homebrew
+    - geerlingguy.mas
 
 - hosts: all
   name: Pivot Ansible Installation to Homebrew

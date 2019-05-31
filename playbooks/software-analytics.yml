@@ -1,0 +1,16 @@
+---
+- vars:
+    homebrew_cask_apps:
+      - aquamacs
+      - xquartz
+
+    homebrew_installed_packages:
+      - pyenv
+      - pyenv-virtualenv
+      - graphviz
+      - r
+
+- name: Install Analytics Software
+  hosts: all
+  roles:
+    - geerlingguy.homebrew

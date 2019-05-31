@@ -1,7 +1,0 @@
----
-- name: Change default Box Drive Location
-  osx_defaults:
-    domain: com.box.desktop
-    key: CustomBoxLocation
-    type: string
-    value: "{{ ansible_env.HOME }}/Cloud"

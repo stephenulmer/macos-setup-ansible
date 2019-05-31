@@ -1,0 +1,66 @@
+---
+- vars:
+    mas_installed_apps:
+      - { id: 890031187,  name: "Marked 2" }
+      - { id: 427475982,  name: "BreakTime" }
+      - { id: 1173663647, name: "BusyCal" }
+      - { id: 1303222628, name: "Paprika Recipe Manager 3" }
+
+    homebrew_cask_apps:
+    ## Purchased Software
+      - 1password
+      - alfred
+      - bartender
+      - bettertouchtool
+      - cleanmymac
+      - carbon-copy-cloner
+      - hazel
+
+      - omnifocus
+      - omnigraffle
+      - omnioutliner
+      - omniplan
+      - textexpander
+
+      -  softorino-youtube-converter
+      -  waltr
+
+
+    ## Free/OSS Software
+      - caffeine
+      - grandperspective
+      - java
+      - mpv
+
+    ## Web Browsers
+      - firefox
+      - google-chrome
+      - tor-browser
+
+    ## Cloud Storage
+      - dropbox
+      - omnipresence
+      - box-drive
+
+    homebrew_installed_packages:
+      - gawk
+      - rename
+      - watch
+
+
+- name: Install Core Software
+  hosts: all
+  roles:
+    - geerlingguy.homebrew
+    - geerlingguy.mas
+
+- name: Configure Box Drive
+  hosts: all
+  tasks:
+    - name: Change default Box Drive Location
+      osx_defaults:
+        domain: com.box.desktop
+        key: CustomBoxLocation
+        type: string
+        value: "{{ ansible_env.HOME }}/Cloud"
+

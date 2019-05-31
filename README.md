@@ -12,11 +12,21 @@ curl -L https://raw.githubusercontent.com/stephenulmer/macos-setup-ansible/maste
 
 This script will install pip and Ansible, then fetch a copy of this repo and run the playbook.
 
-Ansible and its dependencies are installed into ~/.ansible-bootstrap and pip is installed for system-wide use. As the last play in setup.yml, Ansible is installed again usign Homebrew, and then ~/.ansible-bootstrap is removed. This leaves an Ansible installation that is manageable with brew.
+Ansible and its dependencies are installed into ~/.ansible-bootstrap and pip is installed for system-wide use. As the last play in setup.yml, Ansible is installed again usign Homebrew, and then ~/.ansible-bootstrap is removed. This leaves an Ansible installation that is manageable with brew, but doesn't pollute the user's python environment.
 
-Tasks that require the Mac App Store have an Ansible tag of "mas", and are skipped by default. This is because there is no command-line friendly way to sign in to the app store since High Sierra. As long as you use the Mac App Store App and sign in before running the playbooks, the items tagged "mas" will work just fine.
+The setup.yml playbook only installs the Homebrew package manager and the Mac App Store CLI. The user can run additional plays from playbooks/*.yml to install and set-up additional function.
 
-Additionally, tasks that require private information are tagged "vault" and also skipped by default (because you will not have the vault keys). An example is licensing VMware Fusion, which requires a key. You can replace my encrypted information with yours and still use those plays, or perform those steps by hand.
+## Evolution
+
+This was my first self-motivated project with Ansible, and served as a learning tool.  As such, the form has changed quite a bit as I've matured with this particular tool -- the organizational philosphy is very different from cfengine and chef.
+
+This repo started with a handful of custom roles for Ansible, but they fell into one of two categories:
+
+  - complicated enough to warrant their own repo
+  - just a wrapper for an existing role
+
+The former are working their way into existence, and the latter were just transformed into playbooks for simplicity of configuration and testing.
+
 
 ## Motivation
 
