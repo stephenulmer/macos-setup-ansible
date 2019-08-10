@@ -1,5 +1,7 @@
 ---
-- vars:
+- name: Install Core Software
+  hosts: all
+  vars:
     mas_installed_apps:
       - { id: 890031187,  name: "Marked 2" }
       - { id: 427475982,  name: "BreakTime" }
@@ -47,9 +49,6 @@
       - rename
       - watch
 
-
-- name: Install Core Software
-  hosts: all
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas

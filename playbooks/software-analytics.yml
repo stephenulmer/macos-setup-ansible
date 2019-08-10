@@ -1,5 +1,7 @@
 ---
-- vars:
+- name: Install Analytics Software
+  hosts: all
+  vars:
     homebrew_cask_apps:
       - aquamacs
       - xquartz
@@ -10,7 +12,5 @@
       - graphviz
       - r
 
-- name: Install Analytics Software
-  hosts: all
   roles:
     - geerlingguy.homebrew

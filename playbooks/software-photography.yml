@@ -1,5 +1,7 @@
 ---
-- vars:
+- name: Install Photography Software
+  hosts: all
+  vars:
     mas_installed_apps:
       - { id: 463362050, name: "PhotoSweeper" }
       - { id: 716854513, name: "Intensify" }
@@ -13,8 +15,6 @@
     homebrew_cask_apps:
       - capture-one
 
-- name: Install Photography Software
-  hosts: all
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas

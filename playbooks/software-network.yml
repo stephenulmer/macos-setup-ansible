@@ -1,5 +1,7 @@
 ---
-- vars:
+- name: Install Network Software
+  hosts: all
+  vars:
     mas_installed_apps:
       - { id: 1037126344, name: "Apple Configurator 2" }
 
@@ -13,9 +15,6 @@
       - telnet
       - wget
 
-
-- name: Install Network Software
-  hosts: all
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas

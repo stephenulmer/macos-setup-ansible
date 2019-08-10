@@ -1,5 +1,7 @@
 ---
-- vars:
+- name: Install Office Software
+  hosts: all
+  vars:
     mas_installed_apps:
       - { id: 409183694,   name: "Keynote" }
       - { id: 409201541,   name: "Pages" }
@@ -10,9 +12,6 @@
       - skype-for-business
       - onedrive
 
-
-- name: Install Office Software
-  hosts: all
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas
