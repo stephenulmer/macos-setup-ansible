@@ -12,5 +12,24 @@
       - graphviz
       - r
 
+    python_versions:
+      - anaconda3-2019.03
+      - 3.6.8
+      - 3.7.3
+
   roles:
     - geerlingguy.homebrew
+
+  tasks:
+    - name: Add pyenv shims to .bashrc
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        create: yes
+        regexp: 'pyenv init'
+        line: 'eval "$(pyenv init -)"'
+
+    - name: Install Python Environments
+      command: "pyenv install --skip-existing {{ item }}"
+      loop: "{{ python_versions }}"
+      register: pyenv_install
+      changed_when: pyenv_install.stderr is search('Installed.*' + item) 
