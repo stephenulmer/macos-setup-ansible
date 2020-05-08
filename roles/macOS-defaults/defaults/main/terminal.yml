@@ -1,3 +1,0 @@
----
-mpu_terminal_profile_new: "{{ lookup('file', 'Ulmer.terminal') }}"
-mpu_terminal_plist: "{{ ansible_env.HOME }}/Library/Preferences/com.apple.Terminal.plist"
