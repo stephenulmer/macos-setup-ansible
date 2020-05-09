@@ -1,6 +1,6 @@
-# Configure macOS Workstations With Ansible
+# Install Ansible on macOS Workstations
 
-This playbook configures the Mac systems that I use.
+This is a system, to bootstrap Ansible on macOS systems that I use.
 
 ## Quick Start
 
@@ -14,7 +14,7 @@ This script will install pip and Ansible, then fetch a copy of this repo and run
 
 Ansible and its dependencies are installed into ~/.ansible-bootstrap and pip is installed for system-wide use. As the last play in setup.yml, Ansible is installed again using Homebrew, and then ~/.ansible-bootstrap is removed. This leaves an Ansible installation that is manageable with brew, and doesn't change the user's python environment.
 
-The setup.yml playbook only installs the Homebrew package manager and the Mac App Store CLI. The user can run additional plays from playbooks/*.yml to install and set-up additional function.
+The setup.yml playbook only installs the Homebrew package manager and the Mac App Store CLI.
 
 ## Evolution
 
@@ -25,7 +25,7 @@ This repo started with a handful of custom roles for Ansible, but they fell into
   - complicated enough to warrant their own repo
   - just a wrapper for an existing role
 
-The former are working their way into existence, and the latter were just transformed into playbooks for simplicity of configuration and testing.
+The former are working their way into existence, and the latter have been transformed into playbooks and moved to their own repo.
 
 
 ## Motivation
