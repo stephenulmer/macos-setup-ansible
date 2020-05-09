@@ -2,3 +2,4 @@
 .mas-credentials.yml
 NOTES.md
 test/roles-galaxy/**
+.python-version
