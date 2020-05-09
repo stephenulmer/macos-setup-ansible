@@ -1,5 +1,0 @@
----
-- name: Setup MacOS Defaults
-  hosts: all
-  roles:
-    - defaults-macOS
