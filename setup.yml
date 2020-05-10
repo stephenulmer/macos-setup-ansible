@@ -1,16 +1,5 @@
 ---
 - hosts: all
-  name: Log in to the Mac App Store
-  vars_files:
-    - "{{ ansible_env.HOME }}/.mas-credentials.yml"
-  tasks:
-    - name:
-      script: mas_login.scpt
-      environment:
-        MAS_LOGIN: "{{ mas_login }}"
-        MAS_PASSWORD: "{{ mas_password }}"
-
-- hosts: all
   name: Install Package Managers
   roles:
     - geerlingguy.homebrew
