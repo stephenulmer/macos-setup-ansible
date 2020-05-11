@@ -1,6 +1,9 @@
 ---
 - hosts: all
   name: Install Package Managers
+  vars:
+    mas_installed_apps: []
+
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas
