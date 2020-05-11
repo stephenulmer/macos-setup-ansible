@@ -31,7 +31,6 @@ Vagrant.configure("2") do |config|
       ansible.verbose        = true
       ansible.compatibility_mode = "2.0"
       ansible.galaxy_role_file = "../requirements.yml"
-      ansible.galaxy_roles_path = "roles-galaxy"
       ansible.skip_tags = skip_tags
       ansible.vault_password_file = vault_password_file if File.exists?(vault_password_file)
     end
