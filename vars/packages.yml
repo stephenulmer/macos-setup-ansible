@@ -1,0 +1,24 @@
+---
+## geerlingguy.mac.homebrew
+homebrew_installed_packages:
+  - git
+  - pyenv
+  - pyenv-virtualenv
+  - rbenv
+  - plenv
+  - 1password-cli
+  - gh
+  - pandoc
+  - mactex
+  - svn
+  - graphviz
+
+homebrew_cask_apps:
+  - parallels
+  - omnigraffle
+
+homebrew_taps:
+  - name: hashicorp/tap
+
+## geerlingguy.mac.mas
+mas_installed_apps: []

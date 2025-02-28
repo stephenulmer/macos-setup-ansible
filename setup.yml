@@ -1,31 +1,17 @@
 ---
 - hosts: all
   name: Install Package Managers
-  vars:
-    mas_installed_apps: []
+  vars_files:
+    - packages.yml
 
   roles:
     - geerlingguy.homebrew
     - geerlingguy.mas
 
 - hosts: all
-  name: Pivot Ansible Installation to Homebrew
+  name:  Remove Ansible Bootstrap Installation
   tasks:
-
-    - name: Check for bootstrap installation of Ansible
-      stat:
-        path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
-      register: ansible_bootstrap
-
-    - name: Install Ansible with Homebrew
-      homebrew:
-        name: ansible
-        state: latest
-      register: ansible_brew_install
-      when: ansible_bootstrap.stat.exists and ansible_bootstrap.stat.isdir
-
-    - name: Remove Ansible Bootstrap Installation
+    - name: The ~/.ansible-bootstrap directory is absent
       file:
         path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
         state: absent
-      when: not ansible_brew_install is failed
