@@ -1,6 +1,7 @@
 .DS_Store
 .vault-password
 .mas-credentials.yml
+.python-version
 NOTES.md
 test/roles-galaxy/**
 .python-version
