@@ -8,8 +8,8 @@ homebrew_installed_packages:
   - plenv
   - gh
   - pandoc
-  - mactex
   - svn
+  - tree
   - graphviz
 
 homebrew_cask_apps:
