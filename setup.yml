@@ -1,17 +1,19 @@
 ---
-- hosts: all
-  name: Install Package Managers
+- name: Install Package Managers
+  hosts: all
   vars_files:
     - packages.yml
-
   roles:
     - geerlingguy.mac.homebrew
     - geerlingguy.mac.mas
 
-- hosts: all
-  name:  Remove Ansible Bootstrap Installation
+
+- name: Remove Ansible Bootstrap Installation
+  hosts: all
+  vars:
+    ansible_bs: "{{ ansible_env.ANSIBLE_BS | default(ansible_user_home + '/.ansible-bootstrap') }}"
   tasks:
-    - name: The ~/.ansible-bootstrap directory is absent
-      file:
-        path: "{{ ansible_env.HOME }}/.ansible-bootstrap"
+    - name: Directory is absent - {{ ansible_bs }}
+      ansible.builtin.file:
+        path: "{{ ansible_bs }}"
         state: absent

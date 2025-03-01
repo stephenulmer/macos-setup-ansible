@@ -29,7 +29,7 @@ homebrew_taps:
 ## geerlingguy.mac.mas
 mas_installed_apps:
   - { id: 1569813296, name: "1Password for Safari (8.10.62)" }
-  - { id: 937984704,  name: "Amphetamine (5.3.2)" }
+  - { id: 937984704, name: "Amphetamine (5.3.2)" }
 
 mas_email: !vault |
           $ANSIBLE_VAULT;1.1;AES256
