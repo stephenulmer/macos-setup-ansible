@@ -7,7 +7,6 @@ repo="macos-setup-ansible"
 
 export ANSIBLE_BS="${HOME}/.ansible-bootstrap"
 
-sudo -v
 python3 -m venv ${ANSIBLE_BS}
 source ${ANSIBLE_BS}/bin/activate
 python3 -m pip install ansible-core
@@ -20,4 +19,4 @@ curl -L "https://github.com/stephenulmer/${repo}/tarball/master" \
 
 ansible-galaxy collection install -r requirements.yml
 ansible-galaxy role install -r requirements.yml
-ansible-playbook setup.yml
+ansible-playbook -K setup.yml
