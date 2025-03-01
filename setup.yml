@@ -5,8 +5,8 @@
     - packages.yml
 
   roles:
-    - geerlingguy.homebrew
-    - geerlingguy.mas
+    - geerlingguy.mac.homebrew
+    - geerlingguy.mac.mas
 
 - hosts: all
   name:  Remove Ansible Bootstrap Installation
