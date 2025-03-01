@@ -5,13 +5,12 @@
 
 repo="macos-setup-ansible"
 
-export PYTHONUSERBASE="${HOME}/.ansible-bootstrap"
-export PATH=${PYTHONUSERBASE}/bin:$PATH
+export ANSIBLE_BS="${HOME}/.ansible-bootstrap"
 
 sudo -v
-sudo launchctl limit maxfiles unlimited
-sudo easy_install pip
-pip install --user ansible-core
+python3 -m venv ${ANSIBLE_BS}
+source ${ANSIBLE_BS}/bin/activate
+python3 -m pip install ansible-core
 
 mkdir -p "${repo}"
 cd "${repo}"
