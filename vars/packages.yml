@@ -31,3 +31,5 @@ homebrew_taps:
 mas_installed_apps:
   - { id: 1569813296, name: "1Password for Safari (8.10.62)" }
   - { id: 937984704, name: "Amphetamine (5.3.2)" }
+  - { id: 1564688210, name: "Glance (3.0)" }
+  - { id: 803453959, name: "Slack (4.42.120)" }
