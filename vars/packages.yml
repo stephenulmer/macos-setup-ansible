@@ -8,7 +8,7 @@ homebrew_installed_packages:
   - plenv
   - gh
   - pandoc
-  - svn
+  - svn   # required by graphviz re-test dependency with system homebrew
   - tree
   - graphviz
 
@@ -29,6 +29,7 @@ homebrew_taps:
   - name: hashicorp/tap
 
 ## geerlingguy.mac.mas
+## doesn't currently work on recent macOS, but list software here
 mas_installed_apps:
   - { id: 1569813296, name: "1Password for Safari (8.10.62)" }
   - { id: 937984704, name: "Amphetamine (5.3.2)" }
