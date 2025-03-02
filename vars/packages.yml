@@ -23,6 +23,7 @@ homebrew_cask_apps:
   - mactex
   - parallels
   - hashicorp/tap/hashicorp-vagrant
+  - hashicorp/tap/packer
 
 homebrew_taps:
   - name: hashicorp/tap
