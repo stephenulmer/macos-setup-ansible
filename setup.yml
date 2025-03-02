@@ -11,9 +11,9 @@
 - name: Remove Ansible Bootstrap Installation
   hosts: all
   vars:
-    ansible_bs: "{{ ansible_env.ANSIBLE_BS | default(ansible_user_home + '/.ansible-bootstrap') }}"
+    ansible_bs: "{{ ansible_env.ANSIBLE_BS | default(ansible_env.HOME + '/.ansible-bootstrap') }}"
   tasks:
-    - name: Directory is absent - {{ ansible_bs }}
+    - name: "Directory is absent - {{ ansible_bs }}"
       ansible.builtin.file:
         path: "{{ ansible_bs }}"
         state: absent
