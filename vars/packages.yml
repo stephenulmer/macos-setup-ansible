@@ -12,6 +12,7 @@ homebrew_installed_packages:
   - tree
   - graphviz
 
+homebrew_cask_accept_external_apps: true
 homebrew_cask_apps:
   - 1password
   - 1password-cli
