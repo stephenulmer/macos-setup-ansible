@@ -11,6 +11,7 @@ homebrew_installed_packages:
   - svn   # required by graphviz re-test dependency with system homebrew
   - tree
   - graphviz
+  - hashicorp/tap/packer
 
 homebrew_cask_accept_external_apps: true
 homebrew_cask_apps:
@@ -24,7 +25,6 @@ homebrew_cask_apps:
   - mactex
   - parallels
   - hashicorp/tap/hashicorp-vagrant
-  - hashicorp/tap/packer
 
 homebrew_taps:
   - name: hashicorp/tap
