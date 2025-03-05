@@ -1,63 +1,10 @@
 ---
-- name: Install Package Managers
+- name: Set up macOS for actual work
   hosts: all
   vars_files:
     - packages.yml
-  roles:
-    - geerlingguy.mac.homebrew
-    - geerlingguy.mac.mas
-
-
-- name: Remove Ansible Bootstrap Installation
-  hosts: all
-  vars:
-    ansible_bs: "{{ ansible_env.ANSIBLE_BS | default(ansible_env.HOME + '/.ansible-bootstrap') }}"
-  tasks:
-    - name: "Directory is absent - {{ ansible_bs }}"
-      ansible.builtin.file:
-        path: "{{ ansible_bs }}"
-        state: absent
-
-
-- name:  Setup Dotfiles
-  hosts: all
-  vars_files:
     - dotfiles.yml
   tasks:
-    - name: dotfiles repository has local clone
-      ansible.builtin.git:
-        repo: "git@github.com:stephenulmer/dotfiles"
-        dest: "{{ dotfiles_gitdir }}"
-        bare: true
-        update: false
-
-    - name: woring tree is checked-out
-      ansible.builtin.command:
-        cmd: git checkout main .
-        chdir: "{{ ansible_env.HOME }}"
-      changed_when: "'Updated 0 paths' not in git_checkout.stderr"
-      environment:
-        GIT_DIR: "{{ dotfiles_gitdir }}"
-        GIT_WORK_TREE: "{{ ansible_env.HOME }}"
-      register: git_checkout
-
-    - name: dotfiles repo has core.bare false
-      community.general.git_config:
-        repo: "{{ dotfiles_gitdir }}"
-        scope: local
-        name: core.bare
-        value: "false"
-
-    - name: dotfiles repo has status.showUntrackedFiles no
-      community.general.git_config:
-        repo: "{{ dotfiles_gitdir }}"
-        scope: local
-        name: status.showUntrackedFiles
-        value: "no"
-
-    - name: emacs packages are installed
-      ansible.builtin.command:
-        cmd: emacs -nw --batch --user= --load=init.el
-        chdir: "{{ ansible_env.HOME }}/.emacs.d"
-      changed_when: emacs_init.stderr_lines | length > 0
-      register: emacs_init
+    - ansible.builtin.include_tasks: tasks/software.yml
+    - ansible.builtin.include_tasks: tasks/dotfiles.yml
+    - ansible.builtin.include_tasks: tasks/cleanup.yml
