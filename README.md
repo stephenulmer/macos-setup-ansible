@@ -10,7 +10,7 @@ To get started:
 curl -L https://raw.githubusercontent.com/stephenulmer/macos-setup-ansible/master/setup.sh | /bin/bash
 ```
 
-This script will install pip and Ansible, then fetch a copy of this repo and run the setup.yml playbook.
+This script will install pip and Ansible, then fetch a copy of this repo and run the main.yml playbook.
 
 Ansible and its dependencies are installed into ~/.ansible-bootstrap and pip is installed for system-wide use. As the last play in setup.yml, Ansible is installed again using Homebrew, and then ~/.ansible-bootstrap is removed. This leaves an Ansible installation that is manageable with brew, and doesn't change the user's python environment.
 
