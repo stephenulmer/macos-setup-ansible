@@ -24,6 +24,7 @@ homebrew_cask_apps:
   - omniplan
   - mactex
   - parallels
+  - podman-desktop
   - hashicorp/tap/hashicorp-vagrant
 
 homebrew_taps:
