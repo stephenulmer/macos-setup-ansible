@@ -9,6 +9,7 @@ homebrew_installed_packages:
   - gh
   - pandoc
   - svn   # required by graphviz re-test dependency with system homebrew
+  - sshpass
   - tree
   - graphviz
   - hashicorp/tap/packer
@@ -18,6 +19,7 @@ homebrew_cask_apps:
   - 1password
   - 1password-cli
   - emacs
+  - firefox
   - omnifocus
   - omnigraffle
   - omnioutliner
