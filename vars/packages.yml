@@ -7,6 +7,7 @@ homebrew_installed_packages:
   - rbenv
   - plenv
   - gh
+  - jq
   - pandoc
   - svn   # required by graphviz re-test dependency with system homebrew
   - sshpass
