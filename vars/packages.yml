@@ -8,6 +8,7 @@ homebrew_installed_packages:
   - plenv
   - gh
   - jq
+  - cdrtools
   - pandoc
   - svn   # required by graphviz re-test dependency with system homebrew
   - sshpass
