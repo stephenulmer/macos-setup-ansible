@@ -10,6 +10,7 @@ homebrew_installed_packages:
   - jq
   - cdrtools
   - pandoc
+  - p7zip
   - svn   # required by graphviz re-test dependency with system homebrew
   - sshpass
   - tree
