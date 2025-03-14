@@ -41,4 +41,5 @@
     cmd: emacs -nw --batch --user= --load=init.el
     chdir: "{{ ansible_env.HOME }}/.emacs.d"
   changed_when: emacs_init.stderr_lines | length > 0
+  ignore_errors: true
   register: emacs_init
