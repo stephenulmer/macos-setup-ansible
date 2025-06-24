@@ -1,51 +1,25 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-skip_tags = [ "mas" ]
-vault_password_file = "../.vault-password"
-mas_credentials_file = "../.mas-credentials.yml"
+slu_box_name =  "macos-15.3.2"
+vm_name_default = "test-macos-setup"
+vm_name_file = ".vagrant_vm_name"
 
-unless File.exists?(vault_password_file)
-  skip_tags.push("vault")
-end
-
+## Use contents of vm_name_file if it exists, otherwise use vm_name_default
+vm_name = File.file?(vm_name_file) ? IO.read(vm_name_file).strip : vm_name_default
 
 Vagrant.configure("2") do |config|
-#  config.vm.box = "ulmer/macos"
-  config.vm.box = "macinbox"
-  config.vm.box_version = "10.15.4"
+  config.vm.box = "slu/" + slu_box_name
+  config.vm.box_url = "https://filedn.com/l5sQTlB8iglSMQibt69Jdj8/boxes/slu-" + slu_box_name + ".json"
+  config.vm.box_check_update = false
+  config.vm.hostname = vm_name
+  config.vm.define vm_name
 
-  config.vm.synced_folder "..", "/vagrant"
-
-  config.vm.define 'testible' do |node|
-    if File.exists?(mas_credentials_file)
-      node.vm.provision "file", source: mas_credentials_file, destination: ".mas-credentials.yml"
-    end
-
-    if File.exists?(vault_password_file)
-      node.vm.provision "file", source: vault_password_file, destination: ".vault-password"
-    end
-
-    node.vm.provision "ansible", type: "ansible", run: "never" do |ansible|
-      ansible.playbook       = "../setup.yml"
-      ansible.verbose        = true
-      ansible.compatibility_mode = "2.0"
-      ansible.galaxy_role_file = "../requirements.yml"
-      ansible.skip_tags = skip_tags
-      ansible.vault_password_file = vault_password_file if File.exists?(vault_password_file)
-    end
-
-    node.vm.provision "setup", type: "shell", run: "never" do |shell|
-      shell.privileged = false
-      shell.env = { "ANSIBLE_VAULT_PASSWORD_FILE" => "$HOME/.vault-password" } if File.exists?(vault_password_file)
-      shell.inline = "/bin/bash /vagrant/setup.sh"
-    end
-
-    config.trigger.after :up do |trigger|
-      trigger.name = "Provisioning Message"
-      trigger.info = "All provisioners are configured not to run by default.\nUse:\n\t vagrant provision --provision-with ansible|setup\nto test either method."
-    end
-
+  config.vm.provider "parallels" do |prl|
+    prl.name = vm_name
+    prl.update_guest_tools = false
   end
+
 end
+
 
