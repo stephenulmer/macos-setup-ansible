@@ -19,4 +19,4 @@ curl -L "https://github.com/stephenulmer/${repo}/tarball/master" \
 
 ansible-galaxy collection install -r requirements.yml
 ansible-galaxy role install -r requirements.yml
-ansible-playbook -K main.yml
+ansible-playbook -K bootstrap.yml

@@ -1,0 +1,8 @@
+---
+- name: Minimum set-up for automation
+  hosts: all
+  vars_files:
+    - vars/bootstrap.yml
+  tasks:
+    - ansible.builtin.include_tasks:
+        file: tasks/software.yml
