@@ -16,6 +16,7 @@ homebrew_installed_packages:
   - tree
   - graphviz
   - hashicorp/tap/packer
+  - wget2
 
 homebrew_cask_accept_external_apps: true
 homebrew_cask_apps:
