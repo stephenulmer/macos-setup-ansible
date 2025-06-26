@@ -1,6 +1,6 @@
 # Install Ansible on macOS Workstations
 
-This is a system, to bootstrap Ansible on macOS systems that I use.
+This is a system that uses Ansible to bootstrap macOS systems that I use.
 
 ## Quick Start
 
@@ -10,11 +10,32 @@ To get started:
 curl -L https://raw.githubusercontent.com/stephenulmer/macos-setup-ansible/master/setup.sh | /bin/bash
 ```
 
-This script will install pip and Ansible, then fetch a copy of this repo and run the main.yml playbook.
+## Boostrap Phase
 
-Ansible and its dependencies are installed into ~/.ansible-bootstrap and pip is installed for system-wide use. As the last play in setup.yml, Ansible is installed again using Homebrew, and then ~/.ansible-bootstrap is removed. This leaves an Ansible installation that is manageable with brew, and doesn't change the user's python environment.
+First run the provided setup.sh script which will:
 
-The setup.yml playbook only installs the Homebrew package manager and the Mac App Store CLI.
+- Install the Xcode Command Line Tools (python3 will not run without them?!)
+- Create a Python virtualenv and install ansible-core 
+- Download a copy of this git repo
+- Install the prerequsite Ansile collections and roles
+- Run the bootstrap.yml playbook
+
+The bootstrap.yml playbook will ask for the BECOME password (the password for sudo), so that it can install Homebrew, 1Password and a few dependencies.
+
+Once the playbook completes, the user should start 1Password and connect it to their Vaults. This is easily and quickly done by scanning the presented QR code with the 1Password mobile app. Next, enable the 1Password CLI and SSH integration:
+
+    1Password -> Settings -> Developer -> Use the SSH Agent
+    1Password -> Settings -> Developer -> Integrate with 1Password CLI
+
+Now 1Password is ready to provide secrets to automate additional installation.
+
+## Setup Phase
+
+Run the main.yml playbook:
+
+    ansible-playbook main.yml
+
+This installs the dotfiles git repository, which includes `~/bin/op-sudo`. Next, the `main.yml` runs the `geerlingguy.mac.homebrew` role to install the software listed in `var/packages.yml`. The role is called in such a way that if the BECOME passwword is needed it is provided by 1Password, authorized with Touch ID. !password will loog for a Login item named *username*@*hostname*, and provide the password from that to sudo.
 
 ## Evolution
 
