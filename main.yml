@@ -5,6 +5,10 @@
     - packages.yml
     - dotfiles.yml
   tasks:
-    - ansible.builtin.include_tasks: tasks/software.yml
     - ansible.builtin.include_tasks: tasks/dotfiles.yml
+    - ansible.builtin.include_tasks:
+        file: tasks/software.yml
+        apply:
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.HOME }}/bin/op-sudo"
     - ansible.builtin.include_tasks: tasks/cleanup.yml
