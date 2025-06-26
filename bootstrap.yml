@@ -3,6 +3,5 @@
   hosts: all
   vars_files:
     - vars/bootstrap.yml
-  tasks:
-    - ansible.builtin.include_tasks:
-        file: tasks/software.yml
+  roles:
+    - role: geerlingguy.mac.homebrew
