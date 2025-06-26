@@ -29,6 +29,11 @@ Once the playbook completes, the user should start 1Password and connect it to t
 
 Now 1Password is ready to provide secrets to automate additional installation.
 
+Homebrew needs permissions to update casks isntalled in /Applications. Add `Terminal.app` to:
+
+    System Settings -> Privacy & Security -> App Management
+
+
 ## Setup Phase
 
 Run the main.yml playbook:
