@@ -40,11 +40,20 @@ Terminal.app may need to restart to apply the new permissions. If so, you will n
 
 ## Setup Phase
 
-Run the main.yml playbook:
+Run the dotfiles.yml playbook:
 
-    ansible-playbook main.yml
+    ansible-playbook playbooks/dotfiles.yml
 
-This installs the dotfiles git repository, which includes `~/bin/op-sudo`. Next, the `main.yml` runs the `geerlingguy.mac.homebrew` role to install the software listed in `var/packages.yml`. The role is called in such a way that if the BECOME passwword is needed it is provided by 1Password, authorized with Touch ID. !password will loog for a Login item named *username*@*hostname*, and provide the password from that to sudo.
+This installs the dotfiles git repository, which includes `~/bin/op-sudo`.
+
+When called aith the '-A' argument, sudo will look in the SUDO_ASKPASS environment variable for the name of a command to run to get the password. Setting SUDO_ASKPASS="$HOME/bin/op-sudo" enables 1Password to provide sudo with the escalation credentials, authorized with Touch ID. 1password will look for a Login item named *username*@*hostname*, and provide the password from that to sudo.
+
+Run the packages.yml playbook:
+
+    ansible-playbook playbooks/packages.yml
+
+The `packages.yml` playbook runs the `geerlingguy.mac.homebrew` role to install the software listed in the inventory. The role is called in such a way that if the BECOME passwword is needed it is provided by 1Password.
+
 
 ## Evolution
 
