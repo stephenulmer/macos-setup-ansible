@@ -1,9 +1,5 @@
 ---
 macos:
-  hosts:
-    workstation:
-      ansible_connection: local
-      
   vars:
     ## geerlingguy.mac.homebrew
     homebrew_installed_packages:
@@ -50,3 +46,7 @@ macos:
     #  - { name: "Amphetamine (5.3.2)", id: 937984704 }
     #  - { name: "Glance (3.0)", id: 1564688210 }
     #  - { name: "Slack (4.42.120)", id: 803453959 }
+  hosts:
+    workstation:
+      ansible_connection: local
+      
