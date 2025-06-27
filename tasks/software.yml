@@ -1,8 +1,0 @@
----
-- name: homebrew is set-up
-  ansible.builtin.include_role:
-    name: geerlingguy.mac.homebrew
-
-- name: Mac App Store is set-up
-  ansible.builtin.include_role:
-    name: geerlingguy.mac.mas

@@ -1,0 +1,52 @@
+---
+macos:
+  hosts:
+    workstation:
+      ansible_connection: local
+      
+  vars:
+    ## geerlingguy.mac.homebrew
+    homebrew_installed_packages:
+      - cdrtools
+      - gh
+      - git
+      - graphviz
+      - hashicorp/tap/packer
+      - jq
+      - p7zip
+      - pandoc
+      - plenv
+      - pyenv
+      - pyenv-virtualenv
+      - rbenv
+      - sshpass
+      - svn   # required by graphviz re-test dependency with system homebrew
+      - tree
+      - wget2
+    
+    homebrew_cask_accept_external_apps: true
+    homebrew_cask_apps:
+      - 1password
+      - 1password-cli
+      - emacs
+      - firefox
+      - hashicorp/tap/hashicorp-vagrant
+      - mactex
+      - omnifocus
+      - omnigraffle
+      - omnioutliner
+      - omniplan
+      - parallels
+      - podman-desktop
+      - slack
+    
+    homebrew_taps:
+      - name: hashicorp/tap
+    
+    ## geerlingguy.mac.mas
+    ## doesn't currently work on recent macOS, but list software here
+    #mas_installed_apps:
+    #  - { name: "1Password for Safari (8.10.62)", id: 1569813296 }
+    #  - { name: "Amphetamine (5.3.2)", id: 937984704 }
+    #  - { name: "Glance (3.0)", id: 1564688210 }
+    #  - { name: "Slack (4.42.120)", id: 803453959 }

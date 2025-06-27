@@ -1,7 +1,0 @@
----
-- name: Minimum set-up for automation
-  hosts: all
-  vars_files:
-    - vars/bootstrap.yml
-  roles:
-    - role: geerlingguy.mac.homebrew

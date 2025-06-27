@@ -1,0 +1,14 @@
+---
+- name: Minimum set-up for automation
+  hosts: all
+  vars:
+    homebrew_installed_packages:
+      - git
+      - jq
+    homebrew_cask_accept_external_apps: true
+    homebrew_cask_apps:
+      - 1password
+      - 1password-cli
+
+  roles:
+    - role: geerlingguy.mac.homebrew

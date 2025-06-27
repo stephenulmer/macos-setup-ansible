@@ -1,0 +1,11 @@
+---
+- name: Install Software Packages
+  hosts: all
+  tasks:
+    - name: homebrew is set-up
+      ansible.builtin.include_role:
+        name: geerlingguy.mac.homebrew
+        apply:
+          become_flags: -A
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.HOME }}/bin/op-sudo"

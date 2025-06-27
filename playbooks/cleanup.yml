@@ -1,0 +1,10 @@
+---
+- name: Remove installation artifacts
+  hosts: all
+  tasks:
+    - name: python3 venv for ansible bootstrap is absent
+      ansible.builtin.file:
+        path: "{{ ansible_bs }}"
+        state: absent
+      vars:
+        ansible_bs: "{{ ansible_env.ANSIBLE_BS | default(ansible_env.HOME + '/.ansible-bootstrap') }}"
