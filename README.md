@@ -33,6 +33,10 @@ Homebrew needs permissions to update casks isntalled in /Applications. Add `Term
 
     System Settings -> Privacy & Security -> App Management
 
+Terminal.app may need to restart to apply the new permissions. If so, you will need to re-activate the Python virtualenv:
+
+    source ~/.ansible-bootstrap/bin/activate
+
 
 ## Setup Phase
 
