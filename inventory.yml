@@ -16,7 +16,6 @@ macos:
       - pyenv-virtualenv
       - rbenv
       - sshpass
-      - svn   # required by graphviz re-test dependency with system homebrew
       - tree
       - wget2
     
