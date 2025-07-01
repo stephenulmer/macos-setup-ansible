@@ -4,6 +4,7 @@ macos:
     ## geerlingguy.mac.homebrew
     homebrew_installed_packages:
       - cdrtools
+      - dockutil
       - gh
       - git
       - graphviz
@@ -23,7 +24,7 @@ macos:
     homebrew_cask_apps:
       - 1password
       - 1password-cli
-      - emacs
+      - emacs-app
       - firefox
       - hashicorp/tap/hashicorp-vagrant
       - mactex
