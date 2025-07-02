@@ -7,7 +7,7 @@
          | default("https://github.com/stephenulmer/dotfiles.git") }}
     dotfiles_gitdir: >-
       {{ ansible_env.DOTFILES_GITDIR
-         | ansible_env.HOME ~ "/.dotfiles" }}
+         | default(ansible_env.HOME ~ "/.dotfiles") }}
 
   tasks:
     - name: dotfiles repository has local clone
