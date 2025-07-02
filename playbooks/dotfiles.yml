@@ -42,10 +42,18 @@
         name: status.showUntrackedFiles
         value: "no"
     
+    - name: check if emacs is installed
+      ansible.builtin.command:
+        cmd: command -v emacss
+      changed_when: false
+      failed_when: false
+      register: emacs_check
+
     - name: emacs packages are installed
       ansible.builtin.command:
         cmd: emacs -nw --batch --user= --load=init.el
         chdir: "{{ ansible_env.HOME }}/.emacs.d"
+      when: emacs_check.rc == 0
       changed_when: emacs_init.stderr_lines | length > 0
       ignore_errors: true
       register: emacs_init
