@@ -58,6 +58,10 @@ macos:
       - 3.9.18    # RHEL 9.4
       - 3.12.8
 
+    pyenv_virtualenvs:
+      aap24: 3.9.19
+      aap25: 3.11.11
+
   hosts:
     workstation:
       ansible_connection: local

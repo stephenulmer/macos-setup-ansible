@@ -18,7 +18,17 @@
     - name: Requested Python versions are installed
       ansible.builtin.command:
         cmd: "pyenv install {{ item }}"
-      loop: "{{ pyenv_versions }}"
+      loop: "{{ pyenv_versions + pyenv_virtualenvs.values() | list }}"
       register: _pyenv_result
       changed_when: _pyenv_result.rc == 0
       failed_when: _pyenv_result.rc >=2
+
+    - name: Requested virtual environments exist
+      ansible.builtin.command:
+        cmd: "pyenv virtualenv {{ item.value}} {{ item.key }}"
+      loop: "{{ pyenv_virtualenvs | dict2items }}"
+      register: _pyenv_result
+      changed_when: _pyenv_result.rc == 0
+      failed_when:
+        - _pyenv_result.rc == 1
+        - "'is not installed in pyenv' in _pyenv_result.stdout"
