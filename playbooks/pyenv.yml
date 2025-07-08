@@ -19,3 +19,6 @@
       ansible.builtin.command:
         cmd: "pyenv install {{ item }}"
       loop: "{{ pyenv_versions }}"
+      register: _pyenv_result
+      changed_when: _pyenv_result.rc == 0
+      failed_when: _pyenv_result.rc >=2
