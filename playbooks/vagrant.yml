@@ -9,8 +9,10 @@
           become_flags: -A
           environment:
             SUDO_ASKPASS: "{{ ansible_env.SUDO_ASKPASS | default(omit) }}"
-          homebrew_installed_packages:
-            - vagrant
+      vars:
+        homebrew_cask_apps:
+          - hashicorp/tap/hashicorp-vagrant
+        homebrew_installed_packages: []
 
     - name: Vagrant plugins are installed
       ansible.builtin.command:
