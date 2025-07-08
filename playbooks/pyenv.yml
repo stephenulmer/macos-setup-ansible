@@ -15,7 +15,7 @@
           - pyenv
           - pyenv-virtualenv
 
-    - name: Vagrant plugins are installed
+    - name: Requested Python versions are installed
       ansible.builtin.command:
         cmd: "pyenv install {{ item }}"
       loop: "{{ pyenv_versions }}"
