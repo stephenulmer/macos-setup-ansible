@@ -47,6 +47,12 @@ macos:
     #  - { name: "1Password for Safari (8.10.62)", id: 1569813296 }
     #  - { name: "Amphetamine (5.3.2)", id: 937984704 }
 
+    ## vagrant plugins
+    vagrant_plugins:
+      - vagrant-hostmanager
+      - vagrant-parallels
+      - vagrant-scp
+
   hosts:
     workstation:
       ansible_connection: local

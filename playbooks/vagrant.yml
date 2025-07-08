@@ -1,0 +1,18 @@
+---
+- name: Install Software Packages
+  hosts: all
+  tasks:
+    - name: Vagrant is installed
+      ansible.builtin.include_role:
+        name: geerlingguy.mac.homebrew
+        apply:
+          become_flags: -A
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.SUDO_ASKPASS | default(omit) }}"
+          homebrew_installed_packages:
+            - vagrant
+
+    - name: Vagrant plugins are installed
+      ansible.builtin.command:
+        cmd: "vagrant plugin install {{ item }}"
+      loop: "{{ vagrant_plugins }}"
