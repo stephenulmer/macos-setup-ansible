@@ -15,20 +15,37 @@
           - pyenv
           - pyenv-virtualenv
 
+    - name: Locate pyenv root directory
+      ansible.builtin.command:
+        cmd: pyenv root
+      register: _pyenv_root
+      changed_when: false
+
     - name: Requested Python versions are installed
       ansible.builtin.command:
         cmd: "pyenv install {{ item }}"
-      loop: "{{ pyenv_versions + pyenv_virtualenvs.values() | list }}"
+      loop: "{{ pyenv_versions + pyenv_virtualenvs | map(attribute='version') }}"
       register: _pyenv_result
       changed_when: _pyenv_result.rc == 0
       failed_when: _pyenv_result.rc >=2
 
     - name: Requested virtual environments exist
       ansible.builtin.command:
-        cmd: "pyenv virtualenv {{ item.value}} {{ item.key }}"
-      loop: "{{ pyenv_virtualenvs | dict2items }}"
+        cmd: "pyenv virtualenv {{ item.version}} {{ item.name }}"
+      loop: "{{ pyenv_virtualenvs }}"
+      loop_control:
+        label: "{{ item.name }} -> {{ item.version }}"
       register: _pyenv_result
       changed_when: _pyenv_result.rc == 0
       failed_when:
         - _pyenv_result.rc == 1
         - "'is not installed in pyenv' in _pyenv_result.stdout"
+
+    ## pyenv-virtualenv makes "regular" venvs, but they live in ~/.pyenv/versions
+    - name: Requirements are installed in each virtalenv
+      ansible.builtin.pip:
+        name: "{{ item.requirements }}"
+        virtualenv: "{{ _pyenv_root.stdout }}/versions/{{ item.name }}"
+      loop: "{{ pyenv_virtualenvs | selectattr('requirements', 'defined') }}"
+      loop_control:
+        label: "{{ item.name }} -> {{ item.requirements }}"

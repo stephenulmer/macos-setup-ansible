@@ -59,10 +59,19 @@ macos:
       - 3.12.8
 
     pyenv_virtualenvs:
-      aap24: 3.9.19
-      aap25: 3.11.11
+      - name: aap24
+        version: 3.9.19
+        requirements:
+          - ansible-core
+
+      - name: aap25
+        version: 3.11.11
+        requirements:
+          - ansible-core
+          - ansible-lint
+          - ansible-nagivator
 
   hosts:
     workstation:
       ansible_connection: local
-      
+
