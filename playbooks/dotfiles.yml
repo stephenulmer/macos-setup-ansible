@@ -12,7 +12,7 @@
   tasks:
     - name: dotfiles repository has local clone
       ansible.builtin.git:
-        repo: "git@github.com:stephenulmer/dotfiles"
+        repo: "{{ dotfiles_repo }}"
         accept_newhostkey: true
         dest: "{{ dotfiles_gitdir }}"
         bare: true
