@@ -44,7 +44,7 @@
     
     - name: check if emacs is installed
       ansible.builtin.command:
-        cmd: command -v emacss
+        cmd: command -v emacs
       changed_when: false
       failed_when: false
       register: emacs_check
