@@ -1,6 +1,9 @@
 ---
 macos:
   vars:
+    ## Use your own repo, but you can clone mine if you want
+    dotfiles_repo: "https://github.com/stephenulmer/dotfiles.git"
+
     ## geerlingguy.mac.homebrew
     homebrew_installed_packages:
       - cdrtools
