@@ -11,6 +11,7 @@ macos:
       - dockutil
       - gh
       - git
+      - glab
       - gnu-sed
       - graphviz
       - hashicorp/tap/packer
