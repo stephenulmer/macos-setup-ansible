@@ -1,6 +1,22 @@
 ---
 - name: Configure trackpad
   hosts: all
+  pre_tasks:
+    - name: Probe full disk access for macOS Terminal
+      ansible.builtin.stat:
+        path: /Library/Preferences/com.apple.TimeMachine.plist
+      register: stat_probe
+
+    - name: Fail if Terminal can't read restricted file
+      ansible.builtin.fail:
+        msg: |
+          Terminal does not have Full Disk Access!
+
+          Add Terminal to the Full Disk Access list in
+          System Preferences > Security & Privacy. Then
+          restart the terminal and re-run this playbook.
+      when: stat_probe.stat.mimetype == 'unknown'
+
   tasks:
     - name: Enable screen zoom with ctrl and scroll gesture
       osx_defaults:
