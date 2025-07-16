@@ -85,6 +85,10 @@ macos:
     dock_mineffect: null            # "genie", "suck", or "scale"
     dock_magnify: false
 
+    trackpad_zoom: true
+    trackpad_3finger_drag: true
+    trackpad_tap_to_click: false
+
   hosts:
     workstation:
       ansible_connection: local

@@ -1,0 +1,63 @@
+---
+- name: Configure trackpad
+  hosts: all
+  tasks:
+    - name: Enable screen zoom with ctrl and scroll gesture
+      osx_defaults:
+        domain: com.apple.universalaccess
+        key: closeViewScrollWheelToggle
+        type: bool
+        value: "{{ trackpad_zoom }}"
+      when:
+        - trackpad_zoom is defined
+        - trackpad_zoom is not none
+    
+    - name: Enable screen zoom with ctrl and scroll gesture (part deux)
+      osx_defaults:
+        domain: com.apple.universalaccess
+        key: HIDScrollZoomModifierMask
+        type: int
+        value: 262144
+      when:
+        - trackpad_zoom is defined
+        - trackpad_zoom is not none
+    
+    - name: Enable three finger drag gesture (standard driver)
+      osx_defaults:
+        domain: com.apple.AppleMultitouchTrackpad
+        key: TrackpadThreeFingerDrag
+        type: int
+        value: "{{ trackpad_3finger_drag | bool | ternary('1', '0') }}"
+      when:
+        - trackpad_3finger_drag is defined
+        - trackpad_3finger_drag is not none
+    
+    - name: Enable three finger drag gesture (bluetooth driver)
+      osx_defaults:
+        domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+        key: TrackpadThreeFingerDrag
+        type: int
+        value: "{{ trackpad_3finger_drag | bool | ternary('1', '0') }}"
+      when:
+        - trackpad_3finger_drag is defined
+        - trackpad_3finger_drag is not none
+    
+    - name: Enable tap to click (standard driver)
+      osx_defaults:
+        domain: com.apple.AppleMultitouchTrackpad
+        key: Clicking
+        type: int
+        value: "{{ trackpad_tap_to_click | bool | ternary('1', '0') }}"
+      when:
+        - trackpad_tap_to_click is defined
+        - trackpad_tap_to_click is not none
+    
+    - name: Enable tap to click (bluetooth driver)
+      osx_defaults:
+        domain: com.apple.AppleMultitouchTrackpad
+        key: Clicking
+        type: int
+        value: "{{ trackpad_tap_to_click | bool | ternary('1', '0') }}"
+      when:
+        - trackpad_tap_to_click is defined
+        - trackpad_tap_to_click is not none
