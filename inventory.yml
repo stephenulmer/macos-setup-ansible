@@ -76,6 +76,15 @@ macos:
           - ansible-lint
           - ansible-nagivator
 
+    dock_mru_spaces: false
+    dock_orientation: left          # "left", "bottom", or "right"
+    dock_autohide: true
+    dock_autohide_delay: null
+    dock_active_only: true
+    dock_single_app: null
+    dock_mineffect: null            # "genie", "suck", or "scale"
+    dock_magnify: false
+
   hosts:
     workstation:
       ansible_connection: local
