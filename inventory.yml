@@ -97,6 +97,10 @@ macos:
     trackpad_3finger_drag: true
     trackpad_tap_to_click: false
 
+    terminal_default_profile: Ulmer
+    terminal_add_profiles:
+      - Ulmer.terminal
+
   hosts:
     workstation:
       ansible_connection: local
