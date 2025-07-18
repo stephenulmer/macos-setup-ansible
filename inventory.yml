@@ -25,6 +25,7 @@ macos:
       - sshpass
       - tree
       - wget2
+      - yq
     
     homebrew_cask_accept_external_apps: true
     homebrew_cask_apps:
