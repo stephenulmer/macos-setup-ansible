@@ -74,7 +74,7 @@ macos:
         requirements:
           - ansible-core
           - ansible-lint
-          - ansible-nagivator
+          - ansible-navigator
 
     dock_mru_spaces: false
     dock_orientation: left          # "left", "bottom", or "right"
