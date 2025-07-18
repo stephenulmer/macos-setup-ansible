@@ -2,10 +2,9 @@
 
 ## Additional Implementation
 
+- Set desktop background
 
 ### Resurrect formerly working items
-
-- Resurrect Terminal.app profile
 
 
 ### License Parallels Desktop
