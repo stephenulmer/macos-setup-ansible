@@ -1,0 +1,23 @@
+---
+- name: Install Software Packages
+  hosts: all
+  tasks:
+    - name: Podman is installed
+      ansible.builtin.include_role:
+        name: geerlingguy.mac.homebrew
+        apply:
+          become_flags: -A
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.SUDO_ASKPASS | default(omit) }}"
+      vars:
+        homebrew_cask_apps:
+          - podman-desktop
+        homebrew_installed_packages:
+          - podman
+
+    - name: Podman machine is initialized
+      ansible.builtin.command:
+        cmd: "podman machine init --rootful --user-mode-networking"
+      register: podman_machine
+      changed_when: podman_machine.rc == 0
+      failed_when: podman_machine.rc not in [0, 125]
