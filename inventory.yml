@@ -76,6 +76,13 @@ macos:
           - ansible-lint
           - ansible-navigator
 
+      - name: ansible
+        version: 3.12.11
+        requirements:
+          - ansible-core
+          - ansible-lint
+          - ansible-navigator
+
     dock_mru_spaces: false
     dock_orientation: left          # "left", "bottom", or "right"
     dock_autohide: true
