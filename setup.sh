@@ -43,6 +43,5 @@ cd "${repo}"
 curl -L "https://github.com/stephenulmer/${repo}/tarball/master" \
 	| tar -xf - --strip-components 1
 
-ansible-galaxy collection install -r requirements.yml
-ansible-galaxy role install -r requirements.yml
+ansible-galaxy collection install -r collections/requirements.yml
 ansible-playbook -K playbooks/bootstrap.yml

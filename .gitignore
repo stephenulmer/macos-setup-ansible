@@ -4,5 +4,4 @@
 .python-version
 NOTES.md
 test/roles-galaxy/**
-collections/
-roles/
+collections/ansible_collections/
