@@ -65,6 +65,16 @@ macos:
       - vagrant-parallels
       - vagrant-scp
 
+    ## The password could be vaulted here, but I use 1Password
+    oci_registries: []
+    oci_registries_1p:
+      - name: registry.redhat.io
+        uuid: 5a7edllswnfuhm47zzjtawnjdu
+
+    oci_images:
+      - registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9
+      - registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel9
+
     pyenv_versions:
       - 3.6.15    # RHEL 8.5
       - 3.9.18    # RHEL 9.4

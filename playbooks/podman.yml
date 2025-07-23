@@ -1,5 +1,5 @@
 ---
-- name: Install Software Packages
+- name: Install Podman and Podman Desktop
   hosts: all
   tasks:
     - name: Podman is installed
@@ -18,6 +18,41 @@
     - name: Podman machine is initialized
       ansible.builtin.command:
         cmd: "podman machine init --rootful --user-mode-networking"
-      register: podman_machine
-      changed_when: podman_machine.rc == 0
-      failed_when: podman_machine.rc not in [0, 125]
+      register: podman_init
+      changed_when: podman_init.rc == 0
+      failed_when: podman_init.rc not in [0, 125]
+
+    - name: Podman machine is started
+      ansible.builtin.command:
+        cmd: "podman machine start"
+      register: podman_start
+      changed_when: podman_start.rc == 0
+      failed_when: podman_start.rc not in [0, 125]
+
+    - name: Podman is logged in (vaulted credentials)
+      containers.podman.podman_login:
+        registry: "{{ item.name }}"
+        username: "{{ item.username }}"
+        password: "{{ item.password }}"
+      loop: "{{ oci_registries }}"
+      when:
+        - oci_registries is defined
+
+    - name: Podman is logged in (1Password credentials)
+      containers.podman.podman_login:
+        registry: "{{ item.name }}"
+        username: "{{ _username }}"
+        password: "{{ _password }}"
+      loop: "{{ oci_registries_1p }}"
+      when:
+        - oci_registries_1p is defined
+      vars:
+        _username: "{{ lookup('community.general.onepassword', item.uuid, field='username') }}"
+        _password: "{{ lookup('community.general.onepassword', item.uuid) }}"
+
+    - name: OCI images are retrieved
+      containers.podman.podman_image:
+        name: "{{ item }}"
+      loop: "{{ oci_images }}"
+      when:
+        - oci_images is defined
