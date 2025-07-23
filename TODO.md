@@ -2,9 +2,7 @@
 
 ## Additional Implementation
 
-- Set desktop background
 - Text expansions
-- Download initial OCI images
 
 ### Resurrect formerly working items
 
