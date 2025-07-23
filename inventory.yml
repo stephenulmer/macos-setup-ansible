@@ -117,6 +117,18 @@ macos:
     terminal_add_profiles:
       - Ulmer.terminal
 
+    wallpaper:
+      - url: https://ia800301.us.archive.org/8/items/apple-dynamic-wallpapers/Solar%20Gradients.heic
+        checksum: sha1:4da42ac49e4b2879582350b58bad027b5ce3c76f
+        default: true
+      - url: https://cdn.dynamicwallpaper.club/wallpapers/cbcrxs89d89/Lunar%20Glow%2C%20Solar%20Flare.heic
+        checksum: sha1:8db021b2c439c8c5457755cb141b55609d6a46af
+      - url: https://cdn.dynamicwallpaper.club/wallpapers/0197qicdeu9zb/Solar%20Gradient.heic
+        checksum: sha1:b5530c8e0f534800c050f449007a26a5202ff00b
+      - url: https://cdn.dynamicwallpaper.club/wallpapers/bladze5bkz6/A%20perfect%20day.heic
+        checksum: sha1:f0ec421a7b279c2baf79642e0b04970ce938837a
+
+
   hosts:
     workstation:
       ansible_connection: local

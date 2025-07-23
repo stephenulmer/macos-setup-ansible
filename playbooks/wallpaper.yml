@@ -1,0 +1,65 @@
+---
+- name: Manage Desktop Wallpaper
+  hosts: all
+  vars:
+    wallpaper_dest_path: "{{ ansible_env.HOME }}/.wallpaper"
+
+  tasks:
+    - name: App to set wallpaper is installed
+      ansible.builtin.include_role:
+        name: geerlingguy.mac.homebrew
+        apply:
+          become_flags: -A
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.SUDO_ASKPASS | default(omit) }}"
+      vars:
+        homebrew_cask_apps: []
+        homebrew_installed_packages:
+          - wallpaper
+
+    - name: Destination directory exists
+      ansible.builtin.file:
+        path: "{{ wallpaper_dest_path }}"
+        mode: '0755'
+        state: directory
+
+    - name: Wallpaper is downloaded
+      ansible.builtin.get_url:
+        url: "{{ item.url }}"
+        dest: "{{ _dl_target }}"
+        checksum: "{{ item.checksum | default(omit) }}"
+      loop: "{{ wallpaper }}"
+      register: url_get_results
+      vars:
+        _dl_target: >-
+          {{ wallpaper_dest_path
+             + '/'
+             + (item.url
+                | ansible.builtin.basename
+                | ansible.builtin.urldecode) }}
+
+    - name: Get wallpaper name
+      ansible.builtin.command:
+        cmd: "wallpaper get --screen main"
+      register: wp_get_results
+      changed_when: false
+
+    - name: Wallpaper is set on all spaces
+      ansible.builtin.command:
+        cmd: "wallpaper set {{ _new }}"
+      when: _new != _cur
+      vars:
+        _new: >-
+          {{ (wallpaper_dest_path
+              + '/'
+              + (wallpaper
+                 | selectattr('default', 'defined')
+                 | selectattr('default', 'true')
+                 | map(attribute='url')
+                 | first
+                 | ansible.builtin.basename
+                 | ansible.builtin.urldecode))
+             | ansible.builtin.quote }}
+        _cur: >-
+          {{ wp_get_results.stdout
+             | ansible.builtin.quote }}
