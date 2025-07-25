@@ -2,6 +2,22 @@
 - name: Install Podman and Podman Desktop
   hosts: all
   tasks:
+    ##
+    ## If the system is virtualized, we need to end early until
+    ## we can predict if nested virtualization is enabled and working
+    ##
+
+    ## *nix-like systems will tell us if we are in a VM
+    - name: Virtualization indicator is collected
+      ansible.builtin.command:
+        cmd: sysctl kern.hv_vmm_present
+      register: sysctl_out
+      changed_when: false
+
+    - name: Ending podman work if we are virtualized
+      ansible.builtin.meta: end_play
+      when: sysctl_out.stdout | split(':') | trim | last == '1'
+
     - name: Podman is installed
       ansible.builtin.include_role:
         name: geerlingguy.mac.homebrew
