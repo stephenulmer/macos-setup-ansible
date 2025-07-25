@@ -16,7 +16,7 @@
 
     - name: Ending podman work if we are virtualized
       ansible.builtin.meta: end_play
-      when: sysctl_out.stdout | split(':') | trim | last == '1'
+      when: "'kern.hv_vmm_present: 1' in sysctl_out.stdout"
 
     - name: Podman is installed
       ansible.builtin.include_role:
