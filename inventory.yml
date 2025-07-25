@@ -32,6 +32,7 @@ macos:
     homebrew_cask_apps:
       - 1password
       - 1password-cli
+      - basictex
       - emacs-app
       - firefox
       - font-ibm-plex-math
@@ -40,7 +41,6 @@ macos:
       - font-ibm-plex-sans-condensed
       - font-ibm-plex-serif
       - hashicorp/tap/hashicorp-vagrant
-      - mactex
       - omnifocus
       - omnigraffle
       - omnioutliner
