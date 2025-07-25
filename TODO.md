@@ -3,6 +3,7 @@
 ## Additional Implementation
 
 - Text expansions
+- use ansible_become_password, fill from 1Password if required
 
 ### Resurrect formerly working items
 
