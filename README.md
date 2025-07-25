@@ -25,6 +25,7 @@ The bootstrap.yml playbook will ask for the BECOME password (the password for su
 Once the playbook completes, the user should start 1Password and connect it to their Vaults. This is easily and quickly done by scanning the presented QR code with the 1Password mobile app. Next, enable 1Password CLI and SSH integration:
 
     1Password -> Settings -> Developer -> Use the SSH Agent
+    1Password -> Settings -> Developer -> Edit SSH Config (appears after above is checked)
     1Password -> Settings -> Developer -> Integrate with 1Password CLI
 
 Now 1Password is ready to provide secrets to automate additional installation.
