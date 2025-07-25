@@ -2,6 +2,7 @@
 - name: Minimum set-up for automation
   hosts: all
   vars:
+    homebrew_taps: []
     homebrew_installed_packages:
       - git
       - jq
