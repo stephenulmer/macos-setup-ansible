@@ -27,7 +27,9 @@
         cmd: "podman machine start"
       register: podman_start
       changed_when: podman_start.rc == 0
-      failed_when: podman_start.rc not in [0, 125]
+      failed_when:
+        - "'started successfully' not in podman_start.stdout"
+        - "'already running' not in podman_start.stderr"
 
     - name: Podman is logged in (vaulted credentials)
       containers.podman.podman_login:
