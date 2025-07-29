@@ -12,8 +12,9 @@
         dest: "{{ dotfiles_gitdir }}"
         bare: true
         update: false
-    
-    - name: working tree is checked-out
+    # noqa: name[casing] latest[git]
+
+    - name: Working tree is checked-out
       ansible.builtin.command:
         cmd: git checkout main .
         chdir: "{{ ansible_env.HOME }}"
@@ -22,29 +23,31 @@
         GIT_DIR: "{{ dotfiles_gitdir }}"
         GIT_WORK_TREE: "{{ ansible_env.HOME }}"
       register: git_checkout
-    
+
     - name: dotfiles repo has core.bare false
       community.general.git_config:
         repo: "{{ dotfiles_gitdir }}"
         scope: local
         name: core.bare
         value: "false"
-    
+    # noqa: name[casing]
+
     - name: dotfiles repo has status.showUntrackedFiles no
       community.general.git_config:
         repo: "{{ dotfiles_gitdir }}"
         scope: local
         name: status.showUntrackedFiles
         value: "no"
-    
-    - name: check if emacs is installed
+    # noqa: name[casing]
+
+    - name: Check if emacs is installed
       ansible.builtin.command:
         cmd: command -v emacs
       changed_when: false
       failed_when: false
       register: emacs_check
 
-    - name: emacs packages are installed
+    - name: Emacs packages are installed
       ansible.builtin.command:
         cmd: emacs -nw --batch --user= --load=init.el
         chdir: "{{ ansible_env.HOME }}/.emacs.d"

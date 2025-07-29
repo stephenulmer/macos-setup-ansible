@@ -11,8 +11,8 @@
       when:
         - dock_mru_spaces is defined
         - dock_mru_spaces is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Which screen edge for the Dock
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -22,8 +22,8 @@
       when:
         - dock_orientation is defined
         - dock_orientation is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Automatically Hide and Show the Dock
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -33,8 +33,8 @@
       when:
         - dock_autohide is defined
         - dock_autohide is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Remove Dock Autohide Delay
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -44,8 +44,8 @@
       when:
         - dock_autohide_delay is defined
         - dock_autohide_delay is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Only Show Running Apps in Dock
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -55,8 +55,8 @@
       when:
         - dock_active_only is defined
         - dock_active_only is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Single App Mode
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -66,8 +66,8 @@
       when:
         - dock_single_app is defined
         - dock_single_app is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Dock Minimization Effect
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -77,8 +77,8 @@
       when:
         - dock_mineffect is defined
         - dock_mineffect is not none
-      notify: restart Dock
-    
+      notify: Restart Dock
+
     - name: Dock Magnification Effect
       community.general.osx_defaults:
         domain: com.apple.dock
@@ -88,9 +88,9 @@
       when:
         - dock_magnify is defined
         - dock_magnify is not none
-      notify: restart Dock
+      notify: Restart Dock
 
   handlers:
-    - name: restart Dock
+    - name: Restart Dock
       ansible.builtin.command:
         cmd: killall Dock

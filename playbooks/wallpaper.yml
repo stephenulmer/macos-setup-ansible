@@ -28,6 +28,7 @@
         url: "{{ item.url }}"
         dest: "{{ _dl_target }}"
         checksum: "{{ item.checksum | default(omit) }}"
+        mode: '0644'
       loop: "{{ wallpaper | default([]) }}"
       register: url_get_results
       vars:
@@ -47,6 +48,8 @@
     - name: Wallpaper is set on all spaces
       ansible.builtin.command:
         cmd: "wallpaper set {{ _new }}"
+      register: wp_update
+      changed_when: wp_update.rc == 0
       when:
         - wallpaper is defined
         - _new != _cur

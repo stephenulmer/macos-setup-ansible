@@ -27,11 +27,11 @@
       loop: "{{ pyenv_versions + pyenv_virtualenvs | map(attribute='version') }}"
       register: _pyenv_result
       changed_when: _pyenv_result.rc == 0
-      failed_when: _pyenv_result.rc >=2
+      failed_when: _pyenv_result.rc >= 2
 
     - name: Requested virtual environments exist
       ansible.builtin.command:
-        cmd: "pyenv virtualenv {{ item.version}} {{ item.name }}"
+        cmd: "pyenv virtualenv {{ item.version }} {{ item.name }}"
       loop: "{{ pyenv_virtualenvs }}"
       loop_control:
         label: "{{ item.name }} -> {{ item.version }}"

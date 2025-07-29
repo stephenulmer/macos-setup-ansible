@@ -2,7 +2,7 @@
 - name: Install Software Packages
   hosts: all
   tasks:
-    - name: homebrew is set-up
+    - name: Homebrew is set-up
       ansible.builtin.include_role:
         name: geerlingguy.mac.homebrew
         apply:

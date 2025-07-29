@@ -4,7 +4,7 @@
   tasks:
     - name: Profiles are added or replaced
       ansible.builtin.command:
-        cmd: "defaults write com.apple.Terminal 'Window Settings' -dict-add '{{ _name}}' '{{ _value }}'"
+        cmd: "defaults write com.apple.Terminal 'Window Settings' -dict-add '{{ _name }}' '{{ _value }}'"
       loop: "{{ terminal_add_profiles }}"
       loop_control:
         loop_var: _profile
@@ -13,7 +13,7 @@
       vars:
         _name: "{{ (_profile | basename | splitext)[0] }}"
         _value: "{{ lookup('file', _profile) }}"
-    
+
     - name: Set Default Terminal Profile
       community.general.osx_defaults:
         domain: com.apple.Terminal
@@ -21,7 +21,7 @@
         type: string
         value: "{{ terminal_default_profile }}"
       when: terminal_default_profile is defined
-    
+
     - name: Set Startup Terminal Profile
       community.general.osx_defaults:
         domain: com.apple.Terminal

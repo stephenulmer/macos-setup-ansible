@@ -27,7 +27,7 @@
       when:
         - trackpad_zoom is defined
         - trackpad_zoom is not none
-    
+
     - name: Enable screen zoom with ctrl and scroll gesture (part deux)
       community.general.osx_defaults:
         domain: com.apple.universalaccess
@@ -37,7 +37,7 @@
       when:
         - trackpad_zoom is defined
         - trackpad_zoom is not none
-    
+
     - name: Enable three finger drag gesture (standard driver)
       community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
@@ -47,7 +47,7 @@
       when:
         - trackpad_3finger_drag is defined
         - trackpad_3finger_drag is not none
-    
+
     - name: Enable three finger drag gesture (bluetooth driver)
       community.general.osx_defaults:
         domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
@@ -57,7 +57,7 @@
       when:
         - trackpad_3finger_drag is defined
         - trackpad_3finger_drag is not none
-    
+
     - name: Enable tap to click (standard driver)
       community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
@@ -67,7 +67,7 @@
       when:
         - trackpad_tap_to_click is defined
         - trackpad_tap_to_click is not none
-    
+
     - name: Enable tap to click (bluetooth driver)
       community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
