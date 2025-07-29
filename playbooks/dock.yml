@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Rearrange Desktop Spaces Based on Use
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: mru-spaces
         type: bool
@@ -14,7 +14,7 @@
       notify: restart Dock
     
     - name: Which screen edge for the Dock
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: orientation
         type: string
@@ -25,7 +25,7 @@
       notify: restart Dock
     
     - name: Automatically Hide and Show the Dock
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: autohide
         type: bool
@@ -36,7 +36,7 @@
       notify: restart Dock
     
     - name: Remove Dock Autohide Delay
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: autohide-delay
         type: float
@@ -47,7 +47,7 @@
       notify: restart Dock
     
     - name: Only Show Running Apps in Dock
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: static-only
         type: bool
@@ -58,7 +58,7 @@
       notify: restart Dock
     
     - name: Single App Mode
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: single-app
         type: bool
@@ -69,7 +69,7 @@
       notify: restart Dock
     
     - name: Dock Minimization Effect
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: mineffect
         type: bool
@@ -80,7 +80,7 @@
       notify: restart Dock
     
     - name: Dock Magnification Effect
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: magnification
         type: bool

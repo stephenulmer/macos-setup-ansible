@@ -19,7 +19,7 @@
 
   tasks:
     - name: Enable screen zoom with ctrl and scroll gesture
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.universalaccess
         key: closeViewScrollWheelToggle
         type: bool
@@ -29,7 +29,7 @@
         - trackpad_zoom is not none
     
     - name: Enable screen zoom with ctrl and scroll gesture (part deux)
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.universalaccess
         key: HIDScrollZoomModifierMask
         type: int
@@ -39,7 +39,7 @@
         - trackpad_zoom is not none
     
     - name: Enable three finger drag gesture (standard driver)
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadThreeFingerDrag
         type: int
@@ -49,7 +49,7 @@
         - trackpad_3finger_drag is not none
     
     - name: Enable three finger drag gesture (bluetooth driver)
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
         key: TrackpadThreeFingerDrag
         type: int
@@ -59,7 +59,7 @@
         - trackpad_3finger_drag is not none
     
     - name: Enable tap to click (standard driver)
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: Clicking
         type: int
@@ -69,7 +69,7 @@
         - trackpad_tap_to_click is not none
     
     - name: Enable tap to click (bluetooth driver)
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: Clicking
         type: int

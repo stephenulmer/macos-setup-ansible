@@ -15,7 +15,7 @@
         _value: "{{ lookup('file', _profile) }}"
     
     - name: Set Default Terminal Profile
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.Terminal
         key: "Default Window Settings"
         type: string
@@ -23,7 +23,7 @@
       when: terminal_default_profile is defined
     
     - name: Set Startup Terminal Profile
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.Terminal
         key: "Startup Window Settings"
         type: string
