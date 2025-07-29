@@ -3,5 +3,5 @@
 .mas-credentials.yml
 .python-version
 NOTES.md
-test/roles-galaxy/**
+test/.vagrant/**
 collections/ansible_collections/
