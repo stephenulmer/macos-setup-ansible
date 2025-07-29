@@ -17,4 +17,4 @@
     - name: Vagrant plugins are installed
       ansible.builtin.command:
         cmd: "vagrant plugin install {{ item }}"
-      loop: "{{ vagrant_plugins }}"
+      loop: "{{ vagrant_plugins | default([]) }}"

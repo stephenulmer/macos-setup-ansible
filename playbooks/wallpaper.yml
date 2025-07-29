@@ -28,7 +28,7 @@
         url: "{{ item.url }}"
         dest: "{{ _dl_target }}"
         checksum: "{{ item.checksum | default(omit) }}"
-      loop: "{{ wallpaper }}"
+      loop: "{{ wallpaper | default([]) }}"
       register: url_get_results
       vars:
         _dl_target: >-
@@ -47,7 +47,9 @@
     - name: Wallpaper is set on all spaces
       ansible.builtin.command:
         cmd: "wallpaper set {{ _new }}"
-      when: _new != _cur
+      when:
+        - wallpaper is defined
+        - _new != _cur
       vars:
         _new: >-
           {{ (wallpaper_dest_path
