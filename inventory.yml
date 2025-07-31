@@ -85,6 +85,7 @@ macos:
         version: 3.9.19
         requirements:
           - ansible-core
+          - paramiko
 
       - name: aap25
         version: 3.11.11
@@ -92,6 +93,7 @@ macos:
           - ansible-core
           - ansible-lint
           - ansible-navigator
+          - paramiko
 
       - name: ansible
         version: 3.12.11
@@ -99,6 +101,7 @@ macos:
           - ansible-core
           - ansible-lint
           - ansible-navigator
+          - paramiko
 
     dock_mru_spaces: false
     dock_orientation: left          # "left", "bottom", or "right"
