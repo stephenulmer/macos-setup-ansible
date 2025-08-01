@@ -1,0 +1,22 @@
+---
+- name: Install Software Packages
+  hosts: all
+  tasks:
+    - name: tfenv is installed
+      ansible.builtin.include_role:
+        name: geerlingguy.mac.homebrew
+        apply:
+          become_flags: -A
+          environment:
+            SUDO_ASKPASS: "{{ ansible_env.SUDO_ASKPASS | default(omit) }}"
+      vars:
+        homebrew_cask_apps: []
+        homebrew_installed_packages:
+          - tfenv
+
+    - name: Requested Terraform versions are installed
+      ansible.builtin.command:
+        cmd: "tfenv install {{ item }}"
+      loop: "{{ tfenv_versions }}"
+      register: _tfenv_result
+      changed_when: _tfenv_result.stdout | regex_search('Installation of terraform .* +successful')

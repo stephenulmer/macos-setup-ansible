@@ -24,6 +24,7 @@ macos:
       - pyenv-virtualenv
       - rbenv
       - sshpass
+      - tfenv
       - tree
       - wget2
       - yq
@@ -102,6 +103,9 @@ macos:
           - ansible-lint
           - ansible-navigator
           - paramiko
+
+    tfenv_versions:
+      - 1.12.2
 
     dock_mru_spaces: false
     dock_orientation: left          # "left", "bottom", or "right"
