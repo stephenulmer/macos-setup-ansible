@@ -135,6 +135,43 @@ macos:
       - url: https://cdn.dynamicwallpaper.club/wallpapers/bladze5bkz6/A%20perfect%20day.heic
         checksum: sha1:f0ec421a7b279c2baf79642e0b04970ce938837a
 
+    keyboard_replacements:
+      - replace: "omw"
+        with: "On my way!"
+      - replace: ";sppr"
+        with: "Storage Protect"
+      - replace: ";isppr"
+        with: "IBM Storage Protect"
+      - replace: ";ispsc"
+        with: "IBM Storage Scale"
+      - replace: ";ea"
+        with: "Enterprise Architect"
+      - replace: ";addr"
+        with: "3122 SE 29th Blvd"
+      - replace: ";ulmem"
+        with: "ulmer@ulmer.org"
+      - replace: ";misem"
+        with: "stephen.ulmer@mainline.com"
+      - replace: ";misnam"
+        with: "Mainline Information Systems"
+      - replace: ";pelem"
+        with: "stephen.ulmer@pellera.com"
+      - replace: ";pelnam"
+        with: "Pellera Technologies"
+      - replace: ";hph"
+        with: "352-338-7090"
+      - replace: ";nam"
+        with: "Stephen Ulmer"
+      - replace: ";z"
+        with: 32641
+      - replace: ";ph"
+        with: "352-870-8649"
+      - replace: ";gnv"
+        with: Gainesville
+      - replace: ";shrug"
+        with: "\\U00af\\\\(\\U30c4)/\\U00af"
+      - replace: ";spsc"
+        with: "Storage Scale"
 
   hosts:
     workstation:

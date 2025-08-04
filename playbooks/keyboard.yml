@@ -1,0 +1,70 @@
+---
+- name: Update global keyboard configuration
+  hosts: all
+  gather_facts: false
+  tasks:
+    ##
+    ## The generated plist file can be gradded onto the list of replacements
+    ## in System Settings -> Keyboard -> Text Replacements...
+    ##
+    - name: Property list file exists (for drag-n-drop installation)
+      ansible.builtin.template:
+        src: text_replacements.plist.j2
+        dest: ~/Desktop/text_replacements.plist
+        mode: '0644'
+
+##
+## iCloud syncing (even if we are not logged-in) clobbers whatever is configured
+## with `defaults write`. There is an sqlite database that also has the config,
+## though much of it is opaque.
+##
+## sqlite3 ~/Library/KeyboardServices/TextReplacements.db
+##
+#    - name: Extract NSUserKeyEquivalents from GlobalPreferences
+#      ansible.builtin.command:
+#        cmd: defaults read -globalDomain NSUserKeyEquivalents
+#      register: nsuserkeyequivalents_current
+#      ignore_errors: true
+#      changed_when: false
+#
+#    - name: Add or update global keyboard shortcuts
+#      ansible.builtin.command:
+#        cmd: defaults write -globalDomain NSUserKeyEquivalents  -dict-add '{{ shortcut.key }}' "{{ shortcut.value }}"
+#      when: shortcut.key ~ '" = "' ~ shortcut.value not in nsuserkeyequivalents_current.stdout
+#      loop: "{{ keyboard_shortcuts | defaut([]) }}"
+#      loop_control:
+#        loop_var: shortcut
+#
+#    - name: Get current text replacements
+#      community.general.osx_defaults:
+#        key: NSUserDictionaryReplacementItems
+#        state: list
+#      register: replacements_list
+#
+#    - set_fact: Current text replacements are processed into a list
+#        replacements_old: replacements_list.value | batch(5) | map('join', ' ')
+#
+#    - set_fact: New text replacements are processed into a list
+#        replacements_new: >-
+#          {{
+#             (replacements_new | default([]))
+#             + [
+#                 '{ on=1; replace = "'
+#                 ~ item.replace
+#                 ~ '"; with = "'
+#                 ~ item.with
+#                 ~ '"; }'
+#               ]
+#          }}
+#      loop: "{{ keyboard_replacements }}"
+#
+#    - name: Add or update global text replacements
+#      community.general.osx_defaults:
+#        key: NSUserDictionaryReplacementItems
+#        type: array
+#        value: [ '{ on=1; replace = "{{ item.replace }}"; with = "{{ item.with }}"; }' ]
+#        array_add: true
+#        state: present
+#      loop: "{{ keyboard_replacements | default([]) }}"
+#
+
