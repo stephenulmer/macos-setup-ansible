@@ -9,6 +9,7 @@ macos:
     homebrew_installed_packages:
       - cdrtools
       - dockutil
+      - gawk
       - gh
       - git
       - glab
@@ -22,10 +23,12 @@ macos:
       - podman
       - pyenv
       - pyenv-virtualenv
+      - qrtool
       - rbenv
       - sshpass
       - tfenv
       - tree
+      - wallpaper
       - wget2
       - yq
 
