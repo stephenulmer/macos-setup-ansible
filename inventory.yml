@@ -26,6 +26,7 @@ macos:
       - qrtool
       - rbenv
       - sshpass
+      - tea
       - tfenv
       - tree
       - wallpaper
@@ -45,6 +46,7 @@ macos:
       - font-ibm-plex-sans-condensed
       - font-ibm-plex-serif
       - hashicorp/tap/hashicorp-vagrant
+      - noun-project
       - omnifocus
       - omnigraffle
       - omnioutliner
