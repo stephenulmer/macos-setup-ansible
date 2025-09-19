@@ -1,5 +1,5 @@
 ---
-- name: Install Software Packages
+- name: Install Vagrant VM Manager
   hosts: all
   tasks:
     - name: Vagrant is installed
