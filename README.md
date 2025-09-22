@@ -10,7 +10,9 @@ To get started:
 curl -L https://raw.githubusercontent.com/stephenulmer/macos-setup-ansible/master/setup.sh | /bin/bash
 ```
 
-## Boostrap Phase
+## Usage
+
+### Boostrap Phase
 
 First run the provided setup.sh script which will:
 
@@ -40,7 +42,7 @@ Terminal.app may need to restart to apply the new permissions. If so, you will n
     source ~/.ansible-bootstrap/bin/activate
 
 
-## Setup Phase
+### Setup Phase
 
 Run the dotfiles.yml playbook:
 
@@ -56,6 +58,24 @@ Run the packages.yml playbook:
 
 The `packages.yml` playbook runs the `geerlingguy.mac.homebrew` role to install the software listed in the inventory. The role is called in such a way that if the BECOME passwword is needed it is provided by 1Password.
 
+
+### Additional Playbooks
+
+The sample invnetory contains other settings that I use. Each type has a playbook for installation:
+
+  - bootstrap.yml: Minimum set-up for automation
+  - cleanup.yml: Remove installation artifacts
+  - dock.yml: Change macOS dock preferences
+  - dotfiles.yml: Install dotfiles into user account
+  - keyboard.yml: Update global keyboard configuration
+  - packages.yml: Install Software Packages
+  - podman.yml: Install Podman and Podman Desktop
+  - pyenv.yml: Install Software Packages
+  - terminal.yml: Update profiles for Terminal.app
+  - tfenv.yml: Install Software Packages
+  - trackpad.yml: Configure trackpad
+  - vagrant.yml: Install Vagrant VM Manager
+  - wallpaper.yml: Manage Desktop Wallpaper
 
 ## Evolution
 
@@ -74,3 +94,18 @@ The former are working their way into existence, and the latter have been transf
 When I acquired my 2017 MacBook Adorable(tm), the 2013 13" Retina MacBook Pro I had been using became a desktop workstation. To guard my sanity, I decided that all of my work product, documents, and projects would live in various cloud services.
 
 This took care of my "user data" so to speak, but not the actual configuration of the workstations themselves. If I lost a computer (let's say to customs, the TSA, or a hotel thief), then I would have still been hours or days from a comfortable work environment -- even after replacing the hardware and syncing my data. As this project matures, it should converge towards complete coverage of my configuration.
+
+
+## Useful-ish Additional Information
+
+You will probably install packages by hand, and forget to put them in the inventory. So occasionally compare the installed packages to the inventory:
+
+    diff <(yq  '.macos.vars.homebrew_installed_packages[]' inventory.yml | sort) <(brew list --installed-on-request | sort)
+
+Do the same thing for the casks:
+
+    diff <(yq  '.macos.vars.homebrew_cask_apps[]' inventory.yml | sort) <(brew list --casks | sort)
+
+List all of the playbooks with their titles (as in "Additional Playbooks" above):
+
+    cd playbooks; yq '"- " + filename + ": " + .[].name'  *.yml 
