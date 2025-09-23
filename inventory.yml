@@ -55,7 +55,7 @@ macos:
       - parallels
       - podman-desktop
       - slack
-      # - zoom  # "Your Zoom Application is being managed by your IT administrator."
+      - zoom
 
     homebrew_taps:
       - name: hashicorp/tap
