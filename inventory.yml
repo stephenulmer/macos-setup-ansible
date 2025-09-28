@@ -55,6 +55,7 @@ macos:
       - parallels
       - podman-desktop
       - slack
+      - visual-studio-code
       - zoom
 
     homebrew_taps:
