@@ -22,6 +22,7 @@ macos:
       - pandoc
       - plenv
       - podman
+      - poppler
       - pyenv
       - pyenv-virtualenv
       - qrtool
