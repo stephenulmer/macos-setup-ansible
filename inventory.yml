@@ -19,6 +19,7 @@ macos:
       - graphviz
       - hashicorp/tap/packer
       - jq
+      - mas
       - p7zip
       - pandoc
       - plenv
