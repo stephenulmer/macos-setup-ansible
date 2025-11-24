@@ -100,11 +100,11 @@ This took care of my "user data" so to speak, but not the actual configuration o
 
 You will probably install packages by hand, and forget to put them in the inventory. So occasionally compare the installed packages to the inventory:
 
-    diff <(yq  '.macos.vars.homebrew_installed_packages[]' inventory.yml | sort) <(brew list --installed-on-request | sort)
+    diff <(yq  '.macos.vars.homebrew_installed_packages[]' inventory.yml | sort) <(brew list --installed-on-request --full-name | sort)
 
 Do the same thing for the casks:
 
-    diff <(yq  '.macos.vars.homebrew_cask_apps[]' inventory.yml | sort) <(brew list --casks | sort)
+    diff <(yq  '.macos.vars.homebrew_cask_apps[]' inventory.yml | sort) <(brew list --casks --full-name | sort)
 
 List all of the playbooks with their titles (as in "Additional Playbooks" above):
 
