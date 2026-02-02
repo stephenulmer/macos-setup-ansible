@@ -10,6 +10,7 @@ macos:
       - azure-cli
       - cdrtools
       - dockutil
+      - ffmpeg
       - gawk
       - gh
       - git
@@ -19,6 +20,7 @@ macos:
       - graphviz
       - hashicorp/tap/packer
       - jq
+      - imagemagick
       - mas
       - p7zip
       - pandoc
@@ -35,6 +37,7 @@ macos:
       - tree
       - wallpaper
       - wget2
+      - wireguard-tools
       - yq
 
     homebrew_cask_accept_external_apps: true
@@ -59,6 +62,7 @@ macos:
       - podman-desktop
       - slack
       - visual-studio-code
+      - webex-meetings
       - zoom
 
     homebrew_taps:
