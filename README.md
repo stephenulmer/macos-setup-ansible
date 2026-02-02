@@ -50,7 +50,7 @@ Run the dotfiles.yml playbook:
 
 This installs the dotfiles git repository, which includes `~/bin/op-sudo`.
 
-When called aith the '-A' argument, sudo will look in the SUDO_ASKPASS environment variable for the name of a command to run to get the password. Setting SUDO_ASKPASS="$HOME/bin/op-sudo" enables 1Password to provide sudo with the escalation credentials, authorized with Touch ID. 1password will look for a Login item named *username*@*hostname*, and provide the password from that to sudo.
+When called with the '-A' argument, sudo will look in the SUDO_ASKPASS environment variable for the name of a command to run to get the password. Setting SUDO_ASKPASS="$HOME/bin/op-sudo" enables 1Password to provide sudo with the escalation credentials, authorized with Touch ID. 1password will look for a Login item named *username*@*hostname*, and provide the password from that to sudo.
 
 Run the packages.yml playbook:
 
