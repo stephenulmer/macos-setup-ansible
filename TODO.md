@@ -12,6 +12,7 @@
   - /System/Library/Printers/Libraries/ipp2ppd
   - https://aporlebeke.wordpress.com/2019/10/30/configuring-printers-programmatically-for-airprint/
   - https://aporlebeke.wordpress.com/2021/05/26/configuring-printers-programmatically-for-airprint-part-2-now-with-icons/
+- https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops
 
 ### Resurrect formerly working items
 
