@@ -22,6 +22,7 @@ macos:
       - jq
       - imagemagick
       - mas
+      - mmv
       - p7zip
       - pandoc
       - plenv
