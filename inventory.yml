@@ -21,6 +21,7 @@ macos:
       - hashicorp/tap/packer
       - jq
       - imagemagick
+      - mactop
       - mas
       - mmv
       - p7zip
