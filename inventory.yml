@@ -26,6 +26,7 @@ macos:
       - mmv
       - p7zip
       - pandoc
+      - pdf-diff
       - plenv
       - podman
       - poppler
@@ -34,6 +35,7 @@ macos:
       - qrtool
       - rbenv
       - sshpass
+      - skopeo
       - tea
       - tfenv
       - tree
