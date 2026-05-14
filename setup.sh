@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
 	  | tail -n 1)
   softwareupdate -i "$PROD"
 else
-  echo "Xcode CLI tools already istalled"
+  echo "Xcode CLI tools already installed"
 fi
 
 

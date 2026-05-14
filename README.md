@@ -19,7 +19,7 @@ First run the provided setup.sh script which will:
 - Install the Xcode Command Line Tools (python3 will not run without them?!)
 - Create a Python virtualenv and install ansible-core 
 - Download a copy of this git repo
-- Install the prerequsite Ansile collections and roles
+- Install the prerequsite Ansible collections and roles
 - Run the bootstrap.yml playbook
 
 The bootstrap.yml playbook will ask for the BECOME password (the password for sudo), so that it can install Homebrew, 1Password and a few dependencies.
