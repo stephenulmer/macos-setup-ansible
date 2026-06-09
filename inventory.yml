@@ -84,6 +84,8 @@ macos:
       - vagrant-hostmanager
       - vagrant-parallels
       - vagrant-scp
+      - vagrant-service-manager
+      - vagrant-registration
 
     ## The password could be vaulted here, but I use 1Password
     oci_registries: []
